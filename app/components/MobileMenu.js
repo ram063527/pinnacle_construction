@@ -22,43 +22,50 @@ export default function MobileMenu() {
         aria-expanded={open}
         className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-ink"
       >
-        {open ? (
-          <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" stroke="currentColor" className="h-5 w-5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
-          <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" stroke="currentColor" className="h-5 w-5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
-          </svg>
-        )}
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          strokeWidth="1.8"
+          stroke="currentColor"
+          className="h-5 w-5 transition-transform duration-300"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="origin-center transition-all duration-300"
+            d={open ? "M6 18L18 6M6 6l12 12" : "M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"}
+          />
+        </svg>
       </button>
 
-      {open && (
-        <nav className="absolute inset-x-0 top-full border-t border-border bg-surface px-4 py-4 shadow-lg">
-          <ul className="flex flex-col gap-1">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-3 text-base font-medium text-ink hover:bg-surface-raised"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li>
+      <nav
+        className={`absolute inset-x-0 top-full overflow-hidden bg-surface shadow-lg transition-all duration-300 ease-out ${
+          open ? "max-h-96 border-t border-border opacity-100" : "max-h-0 border-t-0 opacity-0"
+        }`}
+      >
+        <ul className="flex flex-col gap-1 px-4 py-4">
+          {navLinks.map((link) => (
+            <li key={link.href}>
               <Link
-                href="/contact"
+                href={link.href}
                 onClick={() => setOpen(false)}
-                className="mt-2 block rounded-full bg-brand-crimson-500 px-4 py-3 text-center font-semibold text-white"
+                className="block rounded-lg px-3 py-3 text-base font-medium text-ink transition-colors hover:bg-surface-raised"
               >
-                Book a Site Visit
+                {link.label}
               </Link>
             </li>
-          </ul>
-        </nav>
-      )}
+          ))}
+          <li>
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className="mt-2 block rounded-full bg-brand-crimson-500 px-4 py-3 text-center font-semibold text-white transition-transform hover:-translate-y-0.5"
+            >
+              Book a Site Visit
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }

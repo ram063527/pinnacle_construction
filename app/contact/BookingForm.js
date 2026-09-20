@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { projects } from "@/data/projects";
+import { Icon } from "@/app/components/icons";
 
 export default function BookingForm() {
   const searchParams = useSearchParams();
@@ -29,21 +30,27 @@ export default function BookingForm() {
     <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-border bg-surface-raised p-8">
       <div>
         <label className="text-sm font-medium text-ink" htmlFor="name">Full Name</label>
-        <input id="name" name="name" required className="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm focus:border-brand-blue-500 focus:outline-none" />
+        <input id="name" name="name" required className="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm transition-colors focus:border-brand-blue-500 focus:outline-none" />
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="text-sm font-medium text-ink" htmlFor="phone">Phone</label>
-          <input id="phone" name="phone" type="tel" required className="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm focus:border-brand-blue-500 focus:outline-none" />
+          <div className="relative mt-1">
+            <Icon name="phone" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-muted" />
+            <input id="phone" name="phone" type="tel" required className="w-full rounded-lg border border-border bg-surface py-2.5 pl-10 pr-4 text-sm transition-colors focus:border-brand-blue-500 focus:outline-none" />
+          </div>
         </div>
         <div>
           <label className="text-sm font-medium text-ink" htmlFor="email">Email</label>
-          <input id="email" name="email" type="email" required className="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm focus:border-brand-blue-500 focus:outline-none" />
+          <div className="relative mt-1">
+            <Icon name="envelope" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-muted" />
+            <input id="email" name="email" type="email" required className="w-full rounded-lg border border-border bg-surface py-2.5 pl-10 pr-4 text-sm transition-colors focus:border-brand-blue-500 focus:outline-none" />
+          </div>
         </div>
       </div>
       <div>
         <label className="text-sm font-medium text-ink" htmlFor="project">Project of Interest</label>
-        <select id="project" name="project" defaultValue={preselected} className="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm focus:border-brand-blue-500 focus:outline-none">
+        <select id="project" name="project" defaultValue={preselected} className="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm transition-colors focus:border-brand-blue-500 focus:outline-none">
           <option value="">Select a project</option>
           {projects.map((project) => (
             <option key={project.slug} value={project.name}>{project.name}</option>
@@ -52,15 +59,18 @@ export default function BookingForm() {
       </div>
       <div>
         <label className="text-sm font-medium text-ink" htmlFor="date">Preferred Visit Date</label>
-        <input id="date" name="date" type="date" className="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm focus:border-brand-blue-500 focus:outline-none" />
+        <div className="relative mt-1">
+          <Icon name="calendar" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-muted" />
+          <input id="date" name="date" type="date" className="w-full rounded-lg border border-border bg-surface py-2.5 pl-10 pr-4 text-sm transition-colors focus:border-brand-blue-500 focus:outline-none" />
+        </div>
       </div>
       <div>
         <label className="text-sm font-medium text-ink" htmlFor="message">Message</label>
-        <textarea id="message" name="message" rows={3} className="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm focus:border-brand-blue-500 focus:outline-none" />
+        <textarea id="message" name="message" rows={3} className="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm transition-colors focus:border-brand-blue-500 focus:outline-none" />
       </div>
       <button
         type="submit"
-        className="w-full rounded-full bg-brand-crimson-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-crimson-600"
+        className="w-full rounded-full bg-brand-crimson-500 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-crimson-600 hover:shadow-md"
       >
         Book a Site Visit
       </button>

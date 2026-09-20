@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Icon } from "@/app/components/icons";
 
 export default function ProjectsBrowser({ projects }) {
   const [query, setQuery] = useState("");
@@ -31,17 +32,20 @@ export default function ProjectsBrowser({ projects }) {
   return (
     <div>
       <div className="grid gap-4 rounded-2xl border border-border bg-surface-raised p-6 sm:grid-cols-3">
-        <input
-          type="text"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search by project name"
-          className="rounded-lg border border-border bg-surface px-4 py-2.5 text-sm text-ink placeholder:text-ink-muted focus:border-brand-blue-500 focus:outline-none"
-        />
+        <div className="relative">
+          <Icon name="search" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-muted" />
+          <input
+            type="text"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search by project name"
+            className="w-full rounded-lg border border-border bg-surface py-2.5 pl-10 pr-4 text-sm text-ink placeholder:text-ink-muted transition-colors focus:border-brand-blue-500 focus:outline-none"
+          />
+        </div>
         <select
           value={location}
           onChange={(event) => setLocation(event.target.value)}
-          className="rounded-lg border border-border bg-surface px-4 py-2.5 text-sm text-ink focus:border-brand-blue-500 focus:outline-none"
+          className="rounded-lg border border-border bg-surface px-4 py-2.5 text-sm text-ink transition-colors focus:border-brand-blue-500 focus:outline-none"
         >
           {locations.map((loc) => (
             <option key={loc} value={loc}>
@@ -52,7 +56,7 @@ export default function ProjectsBrowser({ projects }) {
         <select
           value={configuration}
           onChange={(event) => setConfiguration(event.target.value)}
-          className="rounded-lg border border-border bg-surface px-4 py-2.5 text-sm text-ink focus:border-brand-blue-500 focus:outline-none"
+          className="rounded-lg border border-border bg-surface px-4 py-2.5 text-sm text-ink transition-colors focus:border-brand-blue-500 focus:outline-none"
         >
           {configurations.map((config) => (
             <option key={config} value={config}>
@@ -71,7 +75,7 @@ export default function ProjectsBrowser({ projects }) {
           <Link
             key={project.slug}
             href={`/projects/${project.slug}`}
-            className="group overflow-hidden rounded-2xl border border-border bg-surface-raised shadow-sm transition-shadow hover:shadow-lg"
+            className="group overflow-hidden rounded-2xl border border-border bg-surface-raised shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
           >
             <div className="relative h-56 w-full overflow-hidden">
               <Image

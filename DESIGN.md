@@ -89,7 +89,7 @@ components:
 
 Pinnacle Construction's site plays the real-estate marketing genre straight, at full craft, rather than reaching for a novel format: full-bleed renders, a confident hero with one clear CTA, a conventional project-card grid, and trust proof (stats, testimonials, RERA status) surfaced early. The palette carries the brand's own crimson-and-blue mark into a warm-neutral light theme and a charcoal near-black dark theme — never pure white or pure black in either mode — and the system uses two named brand colors as fixed semantic roles rather than one dominant accent. The result reads closer to Godrej Properties or Prestige Group than to a startup landing page: legible hierarchy, generous section rhythm, bordered cards over heavy shadow, and pill-shaped CTAs that never compete with each other for attention on the same surface.
 
-Confirmed rejections observed in the build: no hard-offset/neobrutalist shadows, no glyph-icon decoration beyond two functional inline SVGs (WhatsApp, theme toggle), no system-default typefaces (Sora and Inter are both intentionally loaded).
+Confirmed rejections observed in the build: no hard-offset/neobrutalist shadows, no filled/decorative icon style (a single 1.7px-stroke line-icon set covers amenities, why-choose-us, services, landmarks, stats, and contact), no system-default typefaces (Sora and Inter are both intentionally loaded), no scroll-jacking or parallax (motion is limited to fade/slide reveals, count-up numbers, and hover lifts).
 
 **Key Characteristics:**
 - Two named brand colors (Pinnacle Blue, Pinnacle Crimson) each locked to a distinct semantic job, never interchangeable
@@ -178,8 +178,18 @@ Radius is deliberately tiered by role: `rounded-lg` (8px) on all form inputs and
 - **Labels:** `text-sm font-medium text-ink`, sentence case, positioned above the field — never uppercase, never inline.
 
 ### Navigation
-- **Style:** sticky header, `bg-surface/90 backdrop-blur`, 1px bottom border. Desktop links are Inter medium, `text-ink-muted` at rest, `text-brand-blue-500` on hover; the header's own CTA is always the Crimson pill. Mobile collapses to a standard hamburger icon that expands a full-width dropdown panel below the header, listing the same links plus the Crimson CTA.
+- **Style:** sticky header, `bg-surface/90 backdrop-blur`, 1px bottom border that only appears once the page is scrolled (`shadow-sm` state added past 8px of scroll). Desktop links are Inter medium, `text-ink-muted` at rest, `text-brand-blue-500` on hover, with an animated underline (width 0 to 100%) as the hover signal. The header's own CTA is always the Crimson pill. Mobile collapses to a standard hamburger icon that expands a full-width dropdown panel below the header on a height/opacity transition, listing the same links plus the Crimson CTA.
 - **Status badges:** `rounded-full bg-brand-crimson-500`, white uppercase label text, used identically across home, projects listing, and project-detail hero to mark Ongoing/Upcoming/Completed.
+
+### Icons
+- **Style:** custom line-icon set (`app/components/icons.js`, `Icon` component keyed by name), 24x24 viewBox, `currentColor` stroke at 1.7px, rounded caps/joins — matches the WhatsApp and theme-toggle glyphs already in the header.
+- **Placement:** stats bar (above each number), Why Choose Us / Amenities / Services cards (in a tinted rounded-square or circle swatch above the title), landmark tiles on project pages, contact info headings, form fields (phone/email/date), and the search input.
+- **Color:** icons inherit the section's semantic color (Blue for informational cards and stats, Crimson for services/conversion), never a neutral gray.
+
+### Motion
+- **Reveal:** `app/components/Reveal.js` fades and slides content up (`opacity-0 translate-y-6` to `opacity-100 translate-y-0`, 700ms ease-out) via `IntersectionObserver`, applied once per section/card with a staggered delay across grid items. Skips straight to visible when `prefers-reduced-motion: reduce`.
+- **Count-up:** `app/components/CountUp.js` animates the stats bar numbers from 0 to their real value (cubic ease-out, ~1.2s) the first time they scroll into view; shows the final number immediately under reduced motion.
+- **Hover:** cards and buttons lift (`-translate-y-0.5` to `-translate-y-1`) and gain elevation (`shadow-md`/`shadow-lg`) on hover; nothing else moves on hover (no rotation, no color-only card hovers).
 
 ## Do's and Don'ts
 
@@ -189,9 +199,11 @@ Radius is deliberately tiered by role: `rounded-lg` (8px) on all form inputs and
 - **Do** rest cards on a border + `shadow-sm`, and reserve `shadow-md`/`shadow-lg` for hover on clickable cards only.
 - **Do** keep both themes off pure white/black — warm paper in light mode, charcoal in dark mode.
 - **Do** set all headings in Sora and all body/UI text in Inter; never mix the two within the same text role.
+- **Do** pair every icon-bearing section with the shared line-icon set and the `Reveal`/hover-lift motion pattern already established, rather than inventing a new visual treatment per section.
 
 ### Don't:
 - **Don't** introduce a third named color role; the system is deliberately two-brand-color plus neutrals, not a broader palette.
 - **Don't** apply a hard-offset or neobrutalist shadow anywhere; this is a corporate-trust craft world (Godrej/Prestige-level), not that genre.
 - **Don't** treat the hero's uppercase eyebrow line ("Pinnacle Construction · Nagpur" / "Since 2010") as a reusable system component — it appears in exactly two places in the shipped build and is not confirmed as a general pattern; do not multiply it across new surfaces.
-- **Don't** add glyph-icon decoration beyond the two functional inline SVGs already in use (WhatsApp, theme toggle); no icon set has been adopted for amenities or feature cards.
+- **Don't** mix icon styles: every icon in the system is a 1.7px-stroke outline glyph on a 24x24 grid (`app/components/icons.js`), never filled/solid, never a third-party icon font.
+- **Don't** animate beyond fade/slide reveals, count-up numbers, and hover lifts (translate + shadow); no scroll-jacking, parallax, or auto-playing carousels.

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects, getProjectBySlug } from "@/data/projects";
+import { Icon } from "@/app/components/icons";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -23,6 +24,14 @@ const landmarkLabels = {
   hospital: "Hospital",
   supermarket: "Supermarket",
   airportOrStation: "Airport / Station",
+};
+
+const landmarkIcons = {
+  school: "academicCap",
+  petrolPump: "fuel",
+  hospital: "medicalCross",
+  supermarket: "shoppingCart",
+  airportOrStation: "plane",
 };
 
 export default async function ProjectDetailPage({ params }) {
@@ -75,7 +84,7 @@ export default async function ProjectDetailPage({ params }) {
             <h2 className="font-heading text-2xl font-bold text-ink">Configurations</h2>
             <div className="mt-4 grid gap-6 sm:grid-cols-2">
               {project.configurations.map((config) => (
-                <div key={config.label} className="rounded-2xl border border-border bg-surface-raised p-6">
+                <div key={config.label} className="rounded-2xl border border-border bg-surface-raised p-6 transition-all hover:shadow-md">
                   <h3 className="font-heading text-lg font-bold text-brand-blue-600">{config.label}</h3>
                   <p className="mt-1 text-sm text-ink-muted">
                     {config.carpetAreaSqFt
@@ -103,8 +112,9 @@ export default async function ProjectDetailPage({ params }) {
             <h2 className="font-heading text-2xl font-bold text-ink">Nearby</h2>
             <dl className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
               {Object.entries(project.landmarks).map(([key, value]) => (
-                <div key={key} className="rounded-xl border border-border bg-surface-raised p-4">
-                  <dt className="text-xs uppercase tracking-wide text-ink-muted">
+                <div key={key} className="rounded-xl border border-border bg-surface-raised p-4 transition-all hover:-translate-y-0.5 hover:shadow-md">
+                  <Icon name={landmarkIcons[key]} className="h-5 w-5 text-brand-blue-500" />
+                  <dt className="mt-2 text-xs uppercase tracking-wide text-ink-muted">
                     {landmarkLabels[key] ?? key}
                   </dt>
                   <dd className="mt-1 font-heading text-base font-semibold text-ink">
@@ -148,7 +158,7 @@ export default async function ProjectDetailPage({ params }) {
 
           <Link
             href={`/contact?project=${encodeURIComponent(project.name)}`}
-            className="mt-6 block rounded-full bg-brand-crimson-500 px-6 py-3 text-center font-semibold text-white transition-colors hover:bg-brand-crimson-600"
+            className="mt-6 block rounded-full bg-brand-crimson-500 px-6 py-3 text-center font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-crimson-600 hover:shadow-md"
           >
             Book a Site Visit
           </Link>
@@ -157,8 +167,9 @@ export default async function ProjectDetailPage({ params }) {
             <a
               href={project.brochureUrl}
               download
-              className="mt-3 block rounded-full border border-border px-6 py-3 text-center font-semibold text-ink transition-colors hover:border-brand-blue-500 hover:text-brand-blue-500"
+              className="mt-3 flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-center font-semibold text-ink transition-colors hover:border-brand-blue-500 hover:text-brand-blue-500"
             >
+              <Icon name="download" className="h-5 w-5" />
               Download Brochure
             </a>
           )}

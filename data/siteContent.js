@@ -1,38 +1,44 @@
 export const stats = [
-  { label: "Projects Completed", value: 43 },
-  { label: "Happy Clients", value: 521 },
-  { label: "Team Members", value: 21 },
-  { label: "Years Experience", value: 15 },
+  { label: "Projects Completed", value: 43, icon: "building" },
+  { label: "Happy Clients", value: 521, icon: "users" },
+  { label: "Team Members", value: 21, icon: "trophy" },
+  { label: "Years Experience", value: 15, icon: "calendar" },
 ];
 
 export const whyChooseUs = [
   {
     title: "Quality Craftsmanship",
+    icon: "trophy",
     description:
       "Our skilled team delivers exceptional workmanship on every project, big or small, ensuring lasting quality.",
   },
   {
     title: "Transparent Process",
+    icon: "eye",
     description:
       "We keep you informed at every stage with clear communication and no surprises throughout the project.",
   },
   {
     title: "Sustainable Practices",
+    icon: "leaf",
     description:
       "We're committed to environmentally responsible construction methods and materials for a greener future.",
   },
   {
     title: "On-Time Delivery",
+    icon: "clock",
     description:
       "We respect deadlines and work efficiently to complete projects on schedule, every time.",
   },
   {
     title: "Competitive Pricing",
+    icon: "tag",
     description:
       "We offer fair, transparent pricing without compromising on quality or cutting corners.",
   },
   {
     title: "Licensed & Insured",
+    icon: "shieldCheck",
     description:
       "Full compliance with industry regulations and comprehensive insurance coverage for your peace of mind.",
   },
@@ -41,31 +47,37 @@ export const whyChooseUs = [
 export const features = [
   {
     title: "Modern Amenities",
+    icon: "home",
     description:
       "Save your time and cut down energy costs with smart home automation.",
   },
   {
     title: "Badminton Court & Play Area",
+    icon: "trophy",
     description:
       "Experience the joy of recreational activities with our well-maintained sports facilities.",
   },
   {
     title: "Gym",
+    icon: "dumbbell",
     description:
       "State-of-the-art fitness center with modern equipment for your health and wellness.",
   },
   {
     title: "Ample Parking",
+    icon: "parking",
     description:
       "Spacious and secure parking facilities for residents and guests alike.",
   },
   {
     title: "Multilayered Security",
+    icon: "shieldLock",
     description:
       "24/7 surveillance and multi-tier security system for complete peace of mind.",
   },
   {
     title: "Solar Power for Common Areas",
+    icon: "sun",
     description:
       "Eco-friendly solar energy solutions powering all common areas and facilities.",
   },
@@ -74,16 +86,19 @@ export const features = [
 export const services = [
   {
     title: "Residential Construction",
+    icon: "home",
     description:
       "Pinnacle creates elegant living spaces with lasting strength and style. Your dream home starts with our expert residential construction.",
   },
   {
     title: "Commercial Buildings",
+    icon: "buildingOffice",
     description:
       "Smart, scalable, and stylish. Our commercial projects meet every business need, constructed with precision to power your growth.",
   },
   {
     title: "Redevelopment Projects",
+    icon: "arrowPath",
     description:
       "From sleek modern looks to timeless classics, we craft spaces that inspire. Every redevelopment project is designed to elevate everyday living.",
   },
