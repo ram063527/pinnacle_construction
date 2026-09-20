@@ -1,0 +1,3 @@
+# Configurations nest inside their Project, not separate listings
+
+A Project like Dravin Enclave can offer multiple Configurations (2BHK, 3BHK), each with its own floor plan and carpet area, while sharing one brochure, one RERA number, one set of renders, and one video reel across all of them. We considered giving each configuration its own independent Project record, matching how some real estate portals list units, but rejected it: it would duplicate the shared project-level data across records for what is really one development. Configuration is a list nested inside a single Project record instead. Search and filtering by configuration must look inside each Project's configuration list rather than filtering a flat list of top-level records.

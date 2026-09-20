@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-20T00:00:00.000Z",
+  "title": "Design System: Pinnacle Construction",
+  "extensions": {
+    "colorMeta": {
+      "pinnacle-blue-500": {
+        "role": "primary",
+        "displayName": "Pinnacle Blue",
+        "canonical": "#1c6dae",
+        "tonalRamp": ["#0f4570", "#14568a", "#1c6dae", "#2f86c4", "#4a9bd6", "#cfe4f5", "#eaf3fb", "#a9d6f2"],
+        "note": "Dark theme raises lightness rather than inverting hue: #4a9bd6 (400) through #a9d6f2 (700) on charcoal backgrounds."
+      },
+      "pinnacle-crimson-500": {
+        "role": "secondary",
+        "displayName": "Pinnacle Crimson",
+        "canonical": "#ae1f3d",
+        "tonalRamp": ["#6d1327", "#8a1830", "#ae1f3d", "#c9385a", "#dd6180", "#f3ccd5", "#fbeaee", "#f4b7c5"],
+        "note": "Dark theme uses a lighter, softer rose range (#dd6180 through #f4b7c5) to hold contrast on charcoal without turning neon."
+      },
+      "surface": { "role": "neutral", "displayName": "Warm Paper", "canonical": "#faf8f5" },
+      "surface-raised": { "role": "neutral", "displayName": "Raised White", "canonical": "#ffffff" },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1c2029" },
+      "ink-muted": { "role": "neutral", "displayName": "Muted Ink", "canonical": "#565d6d" },
+      "border": { "role": "neutral", "displayName": "Hairline Border", "canonical": "#e7e2d9" }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "Hero H1 and project-detail H1 only." },
+      "title": { "displayName": "Title", "purpose": "Section H2s." },
+      "body": { "displayName": "Body", "purpose": "Descriptions, quotes, form copy." },
+      "label": { "displayName": "Label", "purpose": "Status badges, footer headers, uppercase eyebrows (used sparingly, not a general pattern)." }
+    },
+    "shadows": [
+      { "name": "card-resting", "value": "0 1px 2px 0 rgba(0,0,0,0.05)", "purpose": "Default state for clickable cards (Tailwind shadow-sm)." },
+      { "name": "card-hover-md", "value": "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)", "purpose": "Hover lift on why-choose-us cards (Tailwind shadow-md)." },
+      { "name": "card-hover-lg", "value": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)", "purpose": "Hover lift on project cards (Tailwind shadow-lg)." }
+    ],
+    "motion": [
+      { "name": "color-transition", "value": "color/background-color 150ms ease", "purpose": "Default button and link hover (Tailwind transition-colors)." },
+      { "name": "image-zoom", "value": "transform 500ms ease", "purpose": "Project card image scale-105 on hover." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Exploration CTA (e.g. Explore Projects).",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Explore Projects</a>",
+      "css": ".ds-btn-primary { display: inline-block; background: #1c6dae; color: #ffffff; padding: 14px 28px; border-radius: 9999px; font-family: Inter, sans-serif; font-weight: 600; text-decoration: none; transition: background-color 0.15s ease; } .ds-btn-primary:hover { background: #14568a; } .ds-btn-primary:focus-visible { outline: 2px solid #1c6dae; outline-offset: 2px; }"
+    },
+    {
+      "name": "Accent Button",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "Conversion CTA (e.g. Book a Site Visit).",
+      "html": "<a class=\"ds-btn-accent\" href=\"#\">Book a Site Visit</a>",
+      "css": ".ds-btn-accent { display: inline-block; background: #ae1f3d; color: #ffffff; padding: 14px 28px; border-radius: 9999px; font-family: Inter, sans-serif; font-weight: 600; text-decoration: none; transition: background-color 0.15s ease; } .ds-btn-accent:hover { background: #8a1830; } .ds-btn-accent:focus-visible { outline: 2px solid #ae1f3d; outline-offset: 2px; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Clickable project card with render image, status badge, and details.",
+      "html": "<a class=\"ds-card-project\" href=\"#\"><div class=\"ds-card-project-media\"><span class=\"ds-status-badge\">Ongoing</span></div><div class=\"ds-card-project-body\"><h3 class=\"ds-card-project-title\">Dravin Enclave</h3><p class=\"ds-card-project-location\">Wardha Road, Nagpur</p></div></a>",
+      "css": ".ds-card-project { display: block; overflow: hidden; border-radius: 16px; border: 1px solid #e7e2d9; background: #ffffff; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); text-decoration: none; transition: box-shadow 0.15s ease; } .ds-card-project:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); } .ds-card-project-media { position: relative; height: 224px; background: #cfe4f5; } .ds-status-badge { position: absolute; left: 16px; top: 16px; background: #ae1f3d; color: #fff; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 12px; border-radius: 9999px; } .ds-card-project-body { padding: 24px; } .ds-card-project-title { font-family: Sora, sans-serif; font-weight: 700; font-size: 18px; color: #1c2029; margin: 0; } .ds-card-project-location { margin-top: 4px; font-size: 14px; color: #565d6d; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Standard form field used across BookingForm and ProjectsBrowser search.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Search by project name\" />",
+      "css": ".ds-input { width: 100%; border: 1px solid #e7e2d9; background: #faf8f5; color: #1c2029; border-radius: 8px; padding: 10px 16px; font-family: Inter, sans-serif; font-size: 14px; } .ds-input::placeholder { color: #565d6d; } .ds-input:focus { border-color: #1c6dae; outline: none; }"
+    },
+    {
+      "name": "Header Nav",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky site header with logo, links, and accent CTA.",
+      "html": "<header class=\"ds-header\"><nav class=\"ds-header-nav\"><a href=\"#\" class=\"ds-header-link\">Projects</a><a href=\"#\" class=\"ds-header-cta\">Book a Site Visit</a></nav></header>",
+      "css": ".ds-header { position: sticky; top: 0; background: rgba(250,248,245,0.9); backdrop-filter: blur(8px); border-bottom: 1px solid #e7e2d9; } .ds-header-nav { display: flex; align-items: center; gap: 32px; height: 80px; padding: 0 24px; } .ds-header-link { font-family: Inter, sans-serif; font-size: 14px; font-weight: 500; color: #565d6d; text-decoration: none; transition: color 0.15s ease; } .ds-header-link:hover, .ds-header-link:focus-visible { color: #1c6dae; } .ds-header-cta { background: #ae1f3d; color: #fff; font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 9999px; text-decoration: none; }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "component:status-badge",
+      "description": "Project status pill (Ongoing/Upcoming/Completed).",
+      "html": "<span class=\"ds-badge\">Completed</span>",
+      "css": ".ds-badge { display: inline-block; background: #ae1f3d; color: #fff; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 12px; border-radius: 9999px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Trusted Developer's Office",
+    "overview": "Pinnacle Construction's site plays the real-estate marketing genre straight, at full craft, rather than reaching for a novel format: full-bleed renders, a confident hero with one clear CTA, a conventional project-card grid, and trust proof (stats, testimonials, RERA status) surfaced early. The palette carries the brand's own crimson-and-blue mark into a warm-neutral light theme and a charcoal near-black dark theme -- never pure white or pure black in either mode -- and the system uses two named brand colors as fixed semantic roles rather than one dominant accent. The result reads closer to Godrej Properties or Prestige Group than to a startup landing page: legible hierarchy, generous section rhythm, bordered cards over heavy shadow, and pill-shaped CTAs that never compete with each other for attention on the same surface.\n\nConfirmed rejections observed in the build: no hard-offset/neobrutalist shadows, no glyph-icon decoration beyond two functional inline SVGs (WhatsApp, theme toggle), no system-default typefaces (Sora and Inter are both intentionally loaded).",
+    "keyCharacteristics": [
+      "Two named brand colors (Pinnacle Blue, Pinnacle Crimson) each locked to a distinct semantic job, never interchangeable",
+      "Warm-neutral light theme / charcoal-not-black dark theme, both built from the same custom-property scale",
+      "Bordered, rounded-2xl cards as the default container; shadow is a hover accent, not a resting state",
+      "Sora for all headings, Inter for all body and UI text",
+      "Pill-shaped (rounded-full) buttons and status badges throughout; no square or slightly-rounded buttons observed"
+    ],
+    "rules": [
+      { "name": "The Two-Voice Rule", "body": "Blue and Crimson never share a job. Blue drives wayfinding and primary exploration actions; Crimson is reserved exclusively for conversion (booking, WhatsApp-adjacent CTAs, status badges). A single button or badge is never given both colors, and a screen's primary CTA and secondary CTA are never both Crimson.", "section": "colors" },
+      { "name": "The Never-Pure Rule", "body": "Neither theme touches #ffffff/#000000 as a background: light mode sits on warm paper (#faf8f5), dark mode sits on charcoal (#14181f). Card surfaces borrow true white/near-black only as the raised layer, never as the page base.", "section": "colors" },
+      { "name": "The Heading-Only Sora Rule", "body": "Sora is applied exclusively via the h1-h6 selector and .font-heading utility; body copy, buttons, form fields, and nav links are always Inter, even inside heading-adjacent components.", "section": "typography" },
+      { "name": "The Border-First Rule", "body": "Depth is established by a hairline border and a background-shade step before shadow is ever introduced. Shadow only appears as a hover response on clickable cards -- never as a static resting effect, and never as a hard offset/neobrutalist shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Blue for exploration/navigation and Crimson for conversion; never let a single button or badge carry both.",
+      "Do use rounded-full for every button, pill badge, and avatar; rounded-2xl for every card.",
+      "Do rest cards on a border + shadow-sm, and reserve shadow-md/shadow-lg for hover on clickable cards only.",
+      "Do keep both themes off pure white/black -- warm paper in light mode, charcoal in dark mode.",
+      "Do set all headings in Sora and all body/UI text in Inter; never mix the two within the same text role."
+    ],
+    "donts": [
+      "Don't introduce a third named color role; the system is deliberately two-brand-color plus neutrals, not a broader palette.",
+      "Don't apply a hard-offset or neobrutalist shadow anywhere; this is a corporate-trust craft world (Godrej/Prestige-level), not that genre.",
+      "Don't treat the hero's uppercase eyebrow line (\"Pinnacle Construction · Nagpur\" / \"Since 2010\") as a reusable system component -- it appears in exactly two places in the shipped build and is not confirmed as a general pattern; do not multiply it across new surfaces.",
+      "Don't add glyph-icon decoration beyond the two functional inline SVGs already in use (WhatsApp, theme toggle); no icon set has been adopted for amenities or feature cards."
+    ]
+  }
+}
