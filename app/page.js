@@ -170,7 +170,7 @@ export default function HomePage() {
       {/* Amenities */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">Our Features</h2>
+          <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">Amenities</h2>
           <p className="mt-3 text-ink-muted">Amenities designed for comfortable, modern family living.</p>
         </Reveal>
 
@@ -198,24 +198,36 @@ export default function HomePage() {
             <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">Services We Offer</h2>
           </Reveal>
 
-          <Reveal delay={100} className="mt-12 overflow-hidden rounded-2xl border border-border bg-surface">
-            <div className="grid divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0">
-              {services.map((service) => (
-                <div key={service.title} className="p-8 lg:p-10">
-                  <Icon name={service.icon} className="h-8 w-8 text-brand-crimson-500" />
-                  <h3 className="mt-5 font-heading text-xl font-bold text-ink">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">{service.description}</p>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {services.map((service, index) => (
+              <Reveal key={service.title} delay={index * 100}>
+                <div className="group relative overflow-hidden rounded-2xl border border-border">
+                  <div className="relative h-72">
+                    <Image
+                      src={service.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/20" />
+                  </div>
+                  <div className="absolute inset-0 flex flex-col justify-end p-8">
+                    <Icon name={service.icon} className="h-8 w-8 text-white" />
+                    <h3 className="mt-4 font-heading text-xl font-bold text-white">{service.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-white/85">{service.description}</p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </Reveal>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Testimonials */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">What Our Clients Say</h2>
+          <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">What Our Happy Customers Say</h2>
         </Reveal>
         <Reveal delay={100} className="mt-12">
           <TestimonialsCarousel testimonials={testimonials} />

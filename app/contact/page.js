@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import { contact } from "@/data/contact";
+import { contact, faqs } from "@/data/contact";
 import BookingForm from "./BookingForm";
+import Faq from "./Faq";
 import { Icon } from "@/app/components/icons";
 
 export const metadata = {
@@ -33,7 +34,7 @@ export default function ContactPage() {
                   href={`tel:+91${phone}`}
                   className="font-heading text-xl font-bold text-ink underline-offset-4 transition-colors hover:text-brand-crimson-500 hover:underline"
                 >
-                  {phone}
+                  +91 {phone}
                 </a>
               ))}
             </div>
@@ -84,6 +85,21 @@ export default function ContactPage() {
           <Suspense fallback={null}>
             <BookingForm />
           </Suspense>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-20 max-w-3xl">
+        <div className="text-center">
+          <h2 className="font-heading text-2xl font-bold text-ink sm:text-3xl">
+            Committed to quality construction you can trust
+          </h2>
+          <p className="mt-3 text-ink-muted">
+            We&apos;ve been trusted by clients and housing societies across Nagpur for over 15
+            years, backed by a team that delivers even on tight deadlines.
+          </p>
+        </div>
+        <div className="mt-8">
+          <Faq faqs={faqs} />
         </div>
       </div>
     </section>

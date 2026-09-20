@@ -38,25 +38,37 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid items-start gap-10 lg:grid-cols-5">
-          <Reveal className="lg:col-span-3">
-            <h2 className="font-heading text-2xl font-bold text-ink">Our Story</h2>
+          <div className="lg:col-span-3">
+            <Reveal direction="left">
+              <h2 className="font-heading text-2xl font-bold text-ink">Our Story</h2>
+            </Reveal>
             <div className="mt-4 max-w-prose space-y-4 leading-relaxed text-ink-muted">
               {story.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <Reveal key={index} direction="left" delay={120 + index * 120}>
+                  <p>{paragraph}</p>
+                </Reveal>
               ))}
             </div>
-          </Reveal>
-          <Reveal delay={120} className="lg:col-span-2">
+          </div>
+          <Reveal direction="right" delay={150} className="lg:col-span-2">
             {/* Licensed stock texture, never a Pinnacle render. See public/images/texture/CREDITS.md */}
-            <div className="relative aspect-4/5 overflow-hidden rounded-2xl border border-border">
+            <div className="group relative aspect-4/5 overflow-hidden rounded-2xl border border-border">
               <Image
                 src="/images/texture/drafting-hands.jpg"
                 alt="An architect drafting building plans by hand"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover grayscale"
+                className="object-cover grayscale transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-brand-crimson-700/35 mix-blend-multiply" />
+              <div className="absolute bottom-5 left-5 rounded-xl border border-white/30 bg-black/40 px-4 py-3 backdrop-blur-sm">
+                <span className="block font-heading text-2xl font-extrabold text-white">
+                  Since {story.since}
+                </span>
+                <span className="block text-xs uppercase tracking-wide text-white/80">
+                  Building in Nagpur
+                </span>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -76,15 +88,31 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 md:grid-cols-2 lg:px-8">
-        <Reveal className="rounded-2xl border border-border bg-surface-raised p-8 transition-all hover:-translate-y-1 hover:shadow-md">
-          <h2 className="font-heading text-xl font-bold text-ink">Our Mission</h2>
-          <p className="mt-3 max-w-prose text-sm leading-relaxed text-ink-muted">{mission}</p>
-        </Reveal>
-        <Reveal delay={100} className="rounded-2xl border border-border bg-surface-raised p-8 transition-all hover:-translate-y-1 hover:shadow-md">
-          <h2 className="font-heading text-xl font-bold text-ink">Our Vision</h2>
-          <p className="mt-3 max-w-prose text-sm leading-relaxed text-ink-muted">{vision}</p>
-        </Reveal>
+      <section className="bg-band py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+            <Reveal direction="left" className="relative">
+              <span className="pointer-events-none absolute -top-10 left-0 select-none font-heading text-8xl font-extrabold text-white/5">
+                01
+              </span>
+              <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-brand-crimson-500/15 text-brand-crimson-100">
+                <Icon name="flag" className="h-6 w-6" />
+              </div>
+              <h2 className="relative mt-5 font-heading text-2xl font-bold text-white">Our Mission</h2>
+              <p className="relative mt-4 max-w-prose text-sm leading-relaxed text-white/75">{mission}</p>
+            </Reveal>
+            <Reveal direction="right" delay={100} className="relative md:border-l md:border-white/10 md:pl-16">
+              <span className="pointer-events-none absolute -top-10 left-0 select-none font-heading text-8xl font-extrabold text-white/5 md:left-16">
+                02
+              </span>
+              <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-brand-crimson-500/15 text-brand-crimson-100">
+                <Icon name="compass" className="h-6 w-6" />
+              </div>
+              <h2 className="relative mt-5 font-heading text-2xl font-bold text-white">Our Vision</h2>
+              <p className="relative mt-4 max-w-prose text-sm leading-relaxed text-white/75">{vision}</p>
+            </Reveal>
+          </div>
+        </div>
       </section>
 
       {/* Delivered work stands in for the generic "why choose us" grid that used to sit here. */}

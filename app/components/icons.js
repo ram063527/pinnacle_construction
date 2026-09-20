@@ -284,6 +284,37 @@ export function IconSearch(props) {
   );
 }
 
+export function IconStar(props) {
+  return (
+    <Svg {...props}>
+      <path
+        d="M12 3.5l2.55 5.17 5.7.83-4.13 4.02.98 5.68L12 16.4l-5.1 2.8.98-5.68-4.13-4.02 5.7-.83L12 3.5Z"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function IconCompass(props) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M15 9l-2 6-4 2 2-6 4-2Z" />
+    </Svg>
+  );
+}
+
+export function IconFlag(props) {
+  return (
+    <Svg {...props}>
+      <path d="M6 3.5v17" />
+      <path d="M6 4.5c2-1 4-1 6 0s4 1 6 0v8c-2 1-4 1-6 0s-4-1-6 0v-8Z" />
+    </Svg>
+  );
+}
+
 export function IconCheck(props) {
   return (
     <Svg {...props}>
@@ -323,6 +354,9 @@ export const iconMap = {
   chevronRight: IconChevronRight,
   quote: IconQuote,
   check: IconCheck,
+  star: IconStar,
+  compass: IconCompass,
+  flag: IconFlag,
 };
 
 export function Icon({ name, className }) {

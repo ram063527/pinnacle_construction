@@ -48,3 +48,9 @@ next-env.d.ts
 
 # local AI tooling config/plugins (not project source)
 .claude/
+
+.vercel
+.env*
+
+# source media and derived renders (originals live on disk, not in git)
+videos/

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { contact } from "@/data/contact";
+import { Icon } from "@/app/components/icons";
 
 export default function Footer() {
   return (
@@ -8,7 +9,8 @@ export default function Footer() {
         <div>
           <h3 className="font-heading text-lg font-bold text-brand-crimson-600">Pinnacle Construction</h3>
           <p className="mt-3 max-w-xs text-sm text-ink-muted">
-            15 years of building trusted homes in Nagpur. 43 projects completed, 521 happy clients.
+            Every building we put up, someone&apos;s going to call home. That&apos;s the only standard
+            that matters to us.
           </p>
         </div>
 
@@ -29,21 +31,25 @@ export default function Footer() {
           <h4 className="font-heading text-sm font-semibold uppercase tracking-wide text-ink-muted">
             Get in Touch
           </h4>
-          <ul className="mt-4 space-y-2 text-sm text-ink-muted">
-            <li className="flex flex-wrap gap-x-2">
-              {contact.phones.map((phone, index) => (
-                <span key={phone} className="flex gap-x-2">
-                  {index > 0 && <span aria-hidden="true">/</span>}
-                  <a
-                    href={`tel:+91${phone}`}
-                    className="underline-offset-4 transition-colors hover:text-brand-crimson-500 hover:underline"
-                  >
-                    {phone}
-                  </a>
-                </span>
-              ))}
+          <ul className="mt-4 space-y-3 text-sm text-ink-muted">
+            <li className="flex flex-wrap items-start gap-x-2">
+              <Icon name="phone" className="mt-0.5 h-4 w-4 shrink-0 text-brand-crimson-500" />
+              <span className="flex flex-wrap gap-x-2">
+                {contact.phones.map((phone, index) => (
+                  <span key={phone} className="flex gap-x-2">
+                    {index > 0 && <span aria-hidden="true">/</span>}
+                    <a
+                      href={`tel:+91${phone}`}
+                      className="underline-offset-4 transition-colors hover:text-brand-crimson-500 hover:underline"
+                    >
+                      +91 {phone}
+                    </a>
+                  </span>
+                ))}
+              </span>
             </li>
-            <li>
+            <li className="flex items-start gap-x-2">
+              <Icon name="envelope" className="mt-0.5 h-4 w-4 shrink-0 text-brand-crimson-500" />
               <a
                 href={`mailto:${contact.email}`}
                 className="break-all underline-offset-4 transition-colors hover:text-brand-crimson-500 hover:underline"
@@ -51,7 +57,8 @@ export default function Footer() {
                 {contact.email}
               </a>
             </li>
-            <li>
+            <li className="flex items-start gap-x-2">
+              <Icon name="phone" className="mt-0.5 h-4 w-4 shrink-0 text-brand-crimson-500" />
               <a
                 href={`https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`}
                 target="_blank"
@@ -61,7 +68,10 @@ export default function Footer() {
                 WhatsApp us
               </a>
             </li>
-            <li>{contact.address}</li>
+            <li className="flex items-start gap-x-2">
+              <Icon name="mapPin" className="mt-0.5 h-4 w-4 shrink-0 text-brand-crimson-500" />
+              <span>{contact.address}</span>
+            </li>
           </ul>
         </div>
       </div>

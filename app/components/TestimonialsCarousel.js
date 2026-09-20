@@ -74,6 +74,17 @@ export default function TestimonialsCarousel({ testimonials }) {
               aria-hidden={i !== index}
             >
               <Icon name="quote" className="mx-auto h-8 w-8 text-brand-crimson-400" />
+              {testimonial.rating && (
+                <div className="mt-3 flex items-center justify-center gap-0.5" aria-label={`${testimonial.rating} out of 5 stars`}>
+                  {Array.from({ length: 5 }).map((_, star) => (
+                    <Icon
+                      key={star}
+                      name="star"
+                      className={`h-4 w-4 ${star < testimonial.rating ? "text-brand-crimson-500" : "text-border"}`}
+                    />
+                  ))}
+                </div>
+              )}
               <blockquote className="mt-4 text-lg leading-relaxed text-ink sm:text-xl">
                 &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
@@ -81,8 +92,8 @@ export default function TestimonialsCarousel({ testimonials }) {
                 <span className="font-heading text-sm font-semibold text-brand-crimson-600">
                   {testimonial.author}
                 </span>
-                {testimonial.unit && (
-                  <span className="block text-xs text-ink-muted">Unit {testimonial.unit}</span>
+                {testimonial.block && (
+                  <span className="block text-xs text-ink-muted">{testimonial.block} · Pinnacle homeowner</span>
                 )}
               </figcaption>
             </div>

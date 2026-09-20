@@ -2,7 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function Reveal({ children, className = "", delay = 0 }) {
+const HIDDEN_CLASSES = {
+  up: "translate-y-6 opacity-0",
+  left: "-translate-x-8 opacity-0",
+  right: "translate-x-8 opacity-0",
+  scale: "scale-95 opacity-0",
+};
+
+export default function Reveal({ children, className = "", delay = 0, direction = "up" }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -33,7 +40,7 @@ export default function Reveal({ children, className = "", delay = 0 }) {
       ref={ref}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
       className={`transition-all duration-700 ease-out ${
-        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+        visible ? "translate-x-0 translate-y-0 scale-100 opacity-100" : HIDDEN_CLASSES[direction]
       } ${className}`}
     >
       {children}

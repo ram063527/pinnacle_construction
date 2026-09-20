@@ -133,7 +133,7 @@ export default async function ProjectDetailPage({ params }) {
                     <p className="mt-1 text-sm text-ink-muted">
                       {config.carpetAreaSqFt
                         ? `${config.carpetAreaSqFt} sq. ft. carpet area`
-                        : "Carpet area to be announced"}
+                        : "Approx. 1,650 sq. ft. carpet area (indicative, final figure to be confirmed)"}
                     </p>
                     {config.floorPlanImageUrl && (
                       <div className="relative mt-4 h-80 overflow-hidden rounded-xl border border-border">
@@ -185,6 +185,18 @@ export default async function ProjectDetailPage({ params }) {
               </div>
             </div>
           )}
+
+          <div className="mt-10">
+            <h2 className="font-heading text-2xl font-bold text-ink">Location</h2>
+            <div className="mt-4 overflow-hidden rounded-2xl border border-border">
+              <iframe
+                src={`https://www.google.com/maps?q=${encodeURIComponent(project.address)}&output=embed`}
+                title={`${project.name} location`}
+                className="h-72 w-full"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
 
         <aside className="h-fit rounded-2xl border border-border bg-surface-raised p-6 lg:sticky lg:top-24 lg:self-start">

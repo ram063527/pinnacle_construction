@@ -114,11 +114,8 @@ export default function ProjectsBrowser({ projects }) {
         </div>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-ink-muted" role="status">
-          {filtered.length} project{filtered.length === 1 ? "" : "s"} found
-        </p>
-        {isFiltered && (
+      {isFiltered && (
+        <div className="mt-4 flex justify-end">
           <button
             type="button"
             onClick={reset}
@@ -126,8 +123,8 @@ export default function ProjectsBrowser({ projects }) {
           >
             Clear filters
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       <h2 className="sr-only">Matching projects</h2>
 
@@ -170,15 +167,36 @@ export default function ProjectsBrowser({ projects }) {
       </div>
 
       {filtered.length === 0 && (
-        <div className="mt-10 rounded-2xl border border-border bg-surface-raised p-10 text-center">
-          <p className="text-ink-muted">No projects match those filters.</p>
-          <button
-            type="button"
-            onClick={reset}
-            className="mt-4 rounded-full bg-cta px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cta-hover"
-          >
-            Show all projects
-          </button>
+        <div className="mt-10 flex flex-col items-center rounded-2xl border border-border bg-surface-raised p-10 text-center">
+          <div className="relative h-40 w-40 overflow-hidden rounded-full border border-border">
+            <Image
+              src="/images/site/no-results-dog.jpg"
+              alt="A puppy tilting its head, looking confused"
+              fill
+              sizes="160px"
+              className="object-cover"
+            />
+          </div>
+          <p className="mt-6 font-heading text-lg font-bold text-ink">Can&apos;t find what you&apos;re looking for?</p>
+          <p className="mt-2 max-w-sm text-sm text-ink-muted">
+            Try a different search, clear your filters, or just tell us what you have in mind and
+            we&apos;ll help you find it.
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <button
+              type="button"
+              onClick={reset}
+              className="rounded-full border border-border px-6 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-brand-crimson-500 hover:text-brand-crimson-500"
+            >
+              Show all projects
+            </button>
+            <Link
+              href="/contact"
+              className="rounded-full bg-cta px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-cta-hover"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
       )}
     </div>

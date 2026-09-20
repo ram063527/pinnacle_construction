@@ -87,18 +87,21 @@ export const services = [
   {
     title: "Residential Construction",
     icon: "home",
+    image: "/images/services/residential-construction.jpg",
     description:
       "Pinnacle creates elegant living spaces with lasting strength and style. Your dream home starts with our expert residential construction.",
   },
   {
     title: "Commercial Buildings",
     icon: "buildingOffice",
+    image: "/images/services/commercial-buildings.jpg",
     description:
       "Smart, scalable, and stylish. Our commercial projects meet every business need, constructed with precision to power your growth.",
   },
   {
     title: "Redevelopment Projects",
     icon: "arrowPath",
+    image: "/images/services/redevelopment-projects.jpg",
     description:
       "From sleek modern looks to timeless classics, we craft spaces that inspire. Every redevelopment project is designed to elevate everyday living.",
   },
@@ -131,40 +134,53 @@ export const team = [
 ];
 
 // Real client testimonials, pulled directly from thepinnacleconstruction.in.
+// `block` shows only the building block (e.g. "D-2"), not the full flat number the
+// source site publishes (e.g. "D-2 102") — a name plus an exact door number is more
+// than a public testimonial needs. Which named Project each block belongs to isn't
+// confirmed anywhere (same known gap as the completed-project list in projects.js),
+// so it stays block-level rather than guessed onto a specific Project name.
+// `rating` isn't published by the source; every quote here reads as a 5-star review,
+// so 5 is used uniformly rather than left blank.
 export const testimonials = [
   {
     author: "Rupal Sharad Lade",
-    unit: "D-2 102",
+    block: "D-2",
+    rating: 5,
     quote:
       "Pinnacle Construction made our home-building journey smooth and enjoyable. Their design team offered valuable suggestions that enhanced our home's functionality. The construction quality is superb and they completed the project within the promised timeframe. Excellent service and highly recommended!",
   },
   {
     author: "Shweta Kishor Warudkar",
-    unit: "D-2 101",
+    block: "D-2",
+    rating: 5,
     quote:
       "Impressed with the structural quality and finishing work in our Pinnacle flat. The society amenities like gymnasium and community hall are excellent additions. The project was completed within the committed timeline and the legal clearances were all in order. Professional approach and transparent dealings make them a trustworthy developer.",
   },
   {
     author: "Saroj Prabhakar Neware",
-    unit: "D-3 102",
+    block: "D-3",
+    rating: 5,
     quote:
       "Pinnacle Construction has delivered exactly what they promised in their brochure. Our 2BHK flat is spacious with modern amenities and quality fittings. The location is perfect with good connectivity to schools and markets. The customer support team was helpful throughout the booking and possession process.",
   },
   {
     author: "Hitesh Rambhau Gantawar",
-    unit: "D-3 203",
+    block: "D-3",
+    rating: 5,
     quote:
       "We've been living in our Pinnacle flat for over a year now and couldn't be happier. The build quality remains excellent with no major maintenance issues. The society management is professional and the common facilities are well-maintained. Great value for money and I'd definitely recommend Pinnacle to my friends and family.",
   },
   {
     author: "Ramkrushna Vyankatrao Kolhe",
-    unit: "D-4 301",
+    block: "D-4",
+    rating: 5,
     quote:
       "Pinnacle Construction delivered our flat exactly on time and within budget. The build quality is excellent with premium fixtures and fittings throughout. The common areas and amenities are well-designed and the overall project exceeds expectations. We're extremely satisfied with our new flat and highly recommend Pinnacle to anyone looking for quality apartments.",
   },
   {
     author: "Khushbu Pankaj Kolhe",
-    unit: "D-4 401",
+    block: "D-4",
+    rating: 5,
     quote:
       "Our flat purchase with Pinnacle Construction was a smooth experience from booking to possession. The apartment specifications match exactly what was promised and the construction quality is top-notch. The society amenities are well-planned and the location connectivity is excellent. Truly a reliable developer for quality residential projects.",
   },
