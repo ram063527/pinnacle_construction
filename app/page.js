@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { stats, whyChooseUs, features, services, testimonials } from "@/data/siteContent";
+import { stats, whyChooseUs, features, services, testimonials, loanPartners } from "@/data/siteContent";
 import { projects } from "@/data/projects";
 import { Icon } from "@/app/components/icons";
 import Reveal from "@/app/components/Reveal";
@@ -8,6 +8,8 @@ import CountUp from "@/app/components/CountUp";
 import TestimonialsCarousel from "@/app/components/TestimonialsCarousel";
 
 export default function HomePage() {
+  const featuredProjects = projects.filter((project) => project.featured);
+
   return (
     <>
       {/* Hero */}
@@ -108,8 +110,8 @@ export default function HomePage() {
             </Link>
           </Reveal>
 
-          <div className="mt-10 grid gap-8 md:grid-cols-2">
-            {projects.map((project, index) => (
+          <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((project, index) => (
               <Reveal key={project.slug} delay={index * 100}>
                 <Link
                   href={`/projects/${project.slug}`}
@@ -196,6 +198,29 @@ export default function HomePage() {
         <Reveal delay={100} className="mt-12">
           <TestimonialsCarousel testimonials={testimonials} />
         </Reveal>
+      </section>
+
+      {/* Home loan partners */}
+      <section className="bg-surface-raised py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="text-center">
+            <p className="font-body text-sm font-semibold uppercase tracking-[0.15em] text-ink-muted">
+              Home Loan Partners
+            </p>
+          </Reveal>
+          <Reveal delay={100} className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+            {loanPartners.map((partner) => (
+              <Image
+                key={partner.name}
+                src={partner.logo}
+                alt={partner.name}
+                width={120}
+                height={48}
+                className="h-9 w-auto object-contain opacity-80 grayscale transition-all hover:opacity-100 hover:grayscale-0 dark:brightness-110"
+              />
+            ))}
+          </Reveal>
+        </div>
       </section>
 
       {/* Final CTA */}

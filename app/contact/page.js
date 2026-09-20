@@ -28,6 +28,7 @@ export default function ContactPage() {
             <p className="mt-1 text-sm text-ink-muted">Talk to our experts about how we can work together.</p>
             <p className="mt-2 font-heading text-xl font-bold text-ink">{contact.phones[0]}</p>
             <p className="font-heading text-xl font-bold text-ink">{contact.phones[1]}</p>
+            <p className="mt-2 text-sm text-ink-muted">{contact.hours}</p>
           </div>
 
           <div>

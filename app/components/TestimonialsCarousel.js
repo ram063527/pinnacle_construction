@@ -77,8 +77,13 @@ export default function TestimonialsCarousel({ testimonials }) {
               <blockquote className="mt-4 text-lg leading-relaxed text-ink sm:text-xl">
                 &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
-              <figcaption className="mt-5 font-heading text-sm font-semibold text-brand-blue-600">
-                {testimonial.author}
+              <figcaption className="mt-5">
+                <span className="font-heading text-sm font-semibold text-brand-blue-600">
+                  {testimonial.author}
+                </span>
+                {testimonial.unit && (
+                  <span className="block text-xs text-ink-muted">Unit {testimonial.unit}</span>
+                )}
               </figcaption>
             </div>
           ))}

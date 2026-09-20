@@ -5,6 +5,7 @@ export const contact = {
   email: "Pinnacleconstruction03@gmail.com",
   address:
     "Pinnacle Construction, Mulik Complex, Flat No. A/1, Near Airport Centre Point, Wardha Road, Somalwada, Nagpur",
+  hours: "Mon - Sat: 10:00 AM - 7:00 PM",
   mapEmbedUrl:
     "https://www.google.com/maps?q=Mulik+Complex+Near+Airport+Centre+Point+Wardha+Road+Somalwada+Nagpur&output=embed",
 };

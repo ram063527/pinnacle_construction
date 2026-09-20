@@ -48,12 +48,15 @@ Visual direction: the classic real-estate marketing site, played straight and ex
 ## Evidence on Hand
 
 - Logo: `logo/logo.jpg`.
-- Sample brochures: `brochure/` (Dravin Enclave, Durvang Avenue — real PDFs to source renders, floor plans, and copy from).
+- Brochures: `brochure/` and `public/brochure/` (Dravin Enclave, Dravin Castle, Durvang Residency-9 — real PDFs, source of renders/floor plans/copy).
 - Real company copy already collected: Our Story (founded 2010), Mission, Vision, six "Why Choose Us" items, six amenities/features, three services (Residential/Commercial/Redevelopment Construction), and stats (43 projects completed, 521 happy clients, 21 team members, 15 years experience).
-- Real team member names, roles, and bios exist, but no photos — display with initials avatars.
-- Real client testimonials exist (author and quote), but no photos.
-- Contact details: phones 7770020599 (primary/WhatsApp) and 7775947600, email Pinnacleconstruction03@gmail.com, address "Pinnacle Construction, Mulik Complex, Flat No. A/1, Near Airport Centre Point, Wardha Road, Somalwada, Nagpur."
-- No project photography beyond brochure renders exists yet; do not fabricate additional imagery claims.
+- Cross-referenced the client's live site (thepinnacleconstruction.in) and confirmed 14 real projects with real names/addresses/renders: 3 ongoing (Dravin Enclave, Durvang Avenue-1&2, Durvang Residency-9), 3 upcoming (Dravin Castle, Dravin Pride, Safalya Heights), 8 completed (Dravin Heights, Durvang Vasant Imperial, Durvang Residency-2/3/5/6/7, Durvang Enclave-3). Landmark distances are not published anywhere (client or live site) — left null rather than invented; RERA numbers likewise unconfirmed for every project.
+- Real team member names, roles, and bios do not exist yet on either the client's direct input or the live site's About page — stays a flagged placeholder, not fabricated.
+- Real client testimonials (6, with author name + unit number) pulled directly from the live site; no photos.
+- Real home-loan partner banks from the live site: SBI, Axis, Kotak, Bank of Baroda, Bank of Maharashtra (logos in `public/images/partners/`).
+- Known data-quality issue on the client's own live site: the file named "Durvang Avenue" brochure is actually mislabeled Dravin Castle content (verified byte-identical) — not linked from the Durvang Avenue project page for this reason; flag to the client to fix at the source.
+- Contact details: phones 7770020599 (primary/WhatsApp) and 7775947600, email Pinnacleconstruction03@gmail.com, address "Pinnacle Construction, Mulik Complex, Flat No. A/1, Near Airport Centre Point, Wardha Road, Somalwada, Nagpur," hours Mon-Sat 10 AM-7 PM.
+- No project photography beyond brochure/live-site renders exists yet; do not fabricate additional imagery claims.
 
 ## Product Principles
 

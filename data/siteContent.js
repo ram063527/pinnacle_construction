@@ -121,7 +121,8 @@ export const vision =
   "At Pinnacle Construction, our vision is to shape the future of modern living by delivering thoughtfully designed spaces that inspire trust, comfort, and pride. We aim to redefine urban landscapes through innovative architecture, uncompromised quality, and sustainable practices. Our goal is not just to build structures, but to create vibrant communities where people thrive. With every project, we move one step closer to becoming a symbol of excellence and reliability in the construction industry.";
 
 // PLACEHOLDER: replace with the real team roster (names, roles, bios) before launch.
-// Real names/bios exist per the client but were not yet supplied during this build.
+// Checked both the client's direct input and the live site (thepinnacleconstruction.in/about.html);
+// neither publishes team member names yet, so this stays a flagged placeholder.
 export const team = [
   { name: "Team Member Name", role: "Founder & Managing Director", bio: "Placeholder bio — replace with real content." },
   { name: "Team Member Name", role: "Head of Construction", bio: "Placeholder bio — replace with real content." },
@@ -129,19 +130,51 @@ export const team = [
   { name: "Team Member Name", role: "Legal & Compliance Advisor", bio: "Placeholder bio — replace with real content." },
 ];
 
-// PLACEHOLDER: replace with real client testimonials before launch.
-// Real testimonials exist per the client but were not yet supplied during this build.
+// Real client testimonials, pulled directly from thepinnacleconstruction.in.
 export const testimonials = [
   {
-    author: "Client Name",
-    quote: "Placeholder testimonial — replace with a real client quote.",
+    author: "Rupal Sharad Lade",
+    unit: "D-2 102",
+    quote:
+      "Pinnacle Construction made our home-building journey smooth and enjoyable. Their design team offered valuable suggestions that enhanced our home's functionality. The construction quality is superb and they completed the project within the promised timeframe. Excellent service and highly recommended!",
   },
   {
-    author: "Client Name",
-    quote: "Placeholder testimonial — replace with a real client quote.",
+    author: "Shweta Kishor Warudkar",
+    unit: "D-2 101",
+    quote:
+      "Impressed with the structural quality and finishing work in our Pinnacle flat. The society amenities like gymnasium and community hall are excellent additions. The project was completed within the committed timeline and the legal clearances were all in order. Professional approach and transparent dealings make them a trustworthy developer.",
   },
   {
-    author: "Client Name",
-    quote: "Placeholder testimonial — replace with a real client quote.",
+    author: "Saroj Prabhakar Neware",
+    unit: "D-3 102",
+    quote:
+      "Pinnacle Construction has delivered exactly what they promised in their brochure. Our 2BHK flat is spacious with modern amenities and quality fittings. The location is perfect with good connectivity to schools and markets. The customer support team was helpful throughout the booking and possession process.",
   },
+  {
+    author: "Hitesh Rambhau Gantawar",
+    unit: "D-3 203",
+    quote:
+      "We've been living in our Pinnacle flat for over a year now and couldn't be happier. The build quality remains excellent with no major maintenance issues. The society management is professional and the common facilities are well-maintained. Great value for money and I'd definitely recommend Pinnacle to my friends and family.",
+  },
+  {
+    author: "Ramkrushna Vyankatrao Kolhe",
+    unit: "D-4 301",
+    quote:
+      "Pinnacle Construction delivered our flat exactly on time and within budget. The build quality is excellent with premium fixtures and fittings throughout. The common areas and amenities are well-designed and the overall project exceeds expectations. We're extremely satisfied with our new flat and highly recommend Pinnacle to anyone looking for quality apartments.",
+  },
+  {
+    author: "Khushbu Pankaj Kolhe",
+    unit: "D-4 401",
+    quote:
+      "Our flat purchase with Pinnacle Construction was a smooth experience from booking to possession. The apartment specifications match exactly what was promised and the construction quality is top-notch. The society amenities are well-planned and the location connectivity is excellent. Truly a reliable developer for quality residential projects.",
+  },
+];
+
+// Real home-loan partner banks, from thepinnacleconstruction.in.
+export const loanPartners = [
+  { name: "State Bank of India", logo: "/images/partners/sbi.png" },
+  { name: "Axis Bank", logo: "/images/partners/axis.png" },
+  { name: "Kotak Mahindra Bank", logo: "/images/partners/kotak.png" },
+  { name: "Bank of Baroda", logo: "/images/partners/bank-of-baroda.png" },
+  { name: "Bank of Maharashtra", logo: "/images/partners/maharastra.png" },
 ];
