@@ -178,7 +178,7 @@ Radius is deliberately tiered by role: `rounded-lg` (8px) on all form inputs and
 - **Labels:** `text-sm font-medium text-ink`, sentence case, positioned above the field — never uppercase, never inline.
 
 ### Navigation
-- **Style:** sticky header, `bg-surface/90 backdrop-blur`, 1px bottom border. Desktop links are Inter medium, `text-ink-muted` at rest, `text-brand-blue-500` on hover; the header's own CTA is always the Crimson pill. Mobile collapses to an icon-free bottom tab row of the same links inside the header (not a drawer/hamburger).
+- **Style:** sticky header, `bg-surface/90 backdrop-blur`, 1px bottom border. Desktop links are Inter medium, `text-ink-muted` at rest, `text-brand-blue-500` on hover; the header's own CTA is always the Crimson pill. Mobile collapses to a standard hamburger icon that expands a full-width dropdown panel below the header, listing the same links plus the Crimson CTA.
 - **Status badges:** `rounded-full bg-brand-crimson-500`, white uppercase label text, used identically across home, projects listing, and project-detail hero to mark Ongoing/Upcoming/Completed.
 
 ## Do's and Don'ts
