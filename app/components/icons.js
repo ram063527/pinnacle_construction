@@ -185,6 +185,18 @@ export function IconPlane(props) {
   );
 }
 
+export function IconTrain(props) {
+  return (
+    <Svg {...props}>
+      <rect x="5" y="3.5" width="14" height="12" rx="3" />
+      <path d="M5 9.5h14" />
+      <path d="M9 12.5h.01M15 12.5h.01" />
+      <path d="M7.5 15.5 5.5 20.5M16.5 15.5l2 5" />
+      <path d="M7 20.5h10" />
+    </Svg>
+  );
+}
+
 export function IconPhone(props) {
   return (
     <Svg {...props}>
@@ -342,6 +354,7 @@ export const iconMap = {
   medicalCross: IconMedicalCross,
   shoppingCart: IconShoppingCart,
   plane: IconPlane,
+  train: IconTrain,
   phone: IconPhone,
   envelope: IconEnvelope,
   mapPin: IconMapPin,

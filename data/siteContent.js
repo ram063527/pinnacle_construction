@@ -109,19 +109,31 @@ export const services = [
 
 export const story = {
   since: "2010",
-  heading: "Building the future together",
+  heading: "Forty-three projects. One city.",
   paragraphs: [
-    "Founded in 2010, Pinnacle Construction has grown from a small family business into one of the region's most trusted construction companies. With over 15 years of experience, we've built our reputation on quality craftsmanship, timely project completion, and exceptional customer service.",
-    "Our team of skilled professionals is dedicated to turning your vision into reality. Whether it's a residential renovation, commercial construction, or redevelopment project, we approach each job with the same level of commitment and attention to detail.",
-    "At Pinnacle Construction, we believe in building relationships as strong as our structures. Many of our clients have been with us for years, trusting us with multiple projects over time. We're not just contractors, we're partners in your success.",
+    "Pinnacle Construction started in 2010 as a family business in Nagpur, and it has stayed one. Fifteen years on there are twenty-one of us, forty-three completed projects behind us, and 521 families living in them.",
+    "The projects on this site stand in nine localities across Nagpur. Our office is on Wardha Road, a short drive from most of them, which is how we would like to keep it. Close enough that the people who built a place are the same people who answer for it.",
+    "We build for people who intend to live in what they buy. Most of our buyers are families choosing a first or second home near the schools, hospitals and markets they already use, so that is what we plan around: 2 and 3BHK flats, secure common areas, parking, a play area, a gym, and solar on the common supply.",
   ],
 };
 
-export const mission =
-  "Our mission at Pinnacle Construction is to deliver exceptional residential and commercial spaces that exceed client expectations in quality, design, and value. We are committed to using cutting-edge technology, premium materials, and skilled craftsmanship to ensure every project stands the test of time. With a focus on transparency, customer satisfaction, and timely delivery, we strive to build lasting relationships and contribute meaningfully to the growth of the communities we serve.";
+// Mission and vision are split into a lead statement (set as the section heading)
+// and a supporting paragraph, so the pair is readable at a glance rather than a
+// single block of abstract prose. Each statement names itself, which is what makes
+// the two legible side by side without a decorative label above them.
+export const mission = {
+  statement:
+    "Our mission is to hand over the home the brochure promised, on the date we promised it.",
+  body:
+    "The carpet area, the fittings, the amenities and the legal clearances should match the document a buyer signed, with nothing left to negotiate at possession.",
+};
 
-export const vision =
-  "At Pinnacle Construction, our vision is to shape the future of modern living by delivering thoughtfully designed spaces that inspire trust, comfort, and pride. We aim to redefine urban landscapes through innovative architecture, uncompromised quality, and sustainable practices. Our goal is not just to build structures, but to create vibrant communities where people thrive. With every project, we move one step closer to becoming a symbol of excellence and reliability in the construction industry.";
+export const vision = {
+  statement:
+    "Our vision is to become the builder Nagpur families name when someone asks who to trust.",
+  body:
+    "That gets earned slowly, by buildings that still hold up a decade after handover, and by owners who recommend us to their own relatives. We would rather keep building well in the neighbourhoods we know than spread thin across cities we do not.",
+};
 
 // PLACEHOLDER: replace with the real team roster (names, roles, bios) before launch.
 // Checked both the client's direct input and the live site (thepinnacleconstruction.in/about.html);

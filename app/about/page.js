@@ -14,6 +14,18 @@ export const metadata = {
 export default function AboutPage() {
   const delivered = projects.filter((project) => project.status === "completed");
 
+  // The one fact a generic builder page can't borrow: the actual Nagpur localities
+  // we've built in. Derived from project data so it can never drift from the catalog.
+  // "Narendra Nagar Ext." folds into Narendra Nagar; everything before the first
+  // comma is the locality, everything after is the city.
+  const localities = Object.entries(
+    projects.reduce((acc, project) => {
+      const locality = project.location.split(",")[0].replace(/\s+Ext\.$/, "");
+      acc[locality] = (acc[locality] || 0) + 1;
+      return acc;
+    }, {})
+  ).sort(([nameA, countA], [nameB, countB]) => countB - countA || nameA.localeCompare(nameB));
+
   return (
     <>
       <section className="relative flex min-h-[52vh] items-end overflow-hidden">
@@ -31,7 +43,7 @@ export default function AboutPage() {
             {story.heading}
           </h1>
           <p className="mt-4 max-w-xl text-lg text-white/85">
-            Building homes across Nagpur since {story.since}.
+            Homes for Nagpur families, since {story.since}.
           </p>
         </div>
       </section>
@@ -51,24 +63,25 @@ export default function AboutPage() {
             </div>
           </div>
           <Reveal direction="right" delay={150} className="lg:col-span-2">
-            {/* Licensed stock texture, never a Pinnacle render. See public/images/texture/CREDITS.md */}
-            <div className="group relative aspect-4/5 overflow-hidden rounded-2xl border border-border">
-              <Image
-                src="/images/texture/drafting-hands.jpg"
-                alt="An architect drafting building plans by hand"
-                fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover grayscale transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-brand-crimson-700/35 mix-blend-multiply" />
-              <div className="absolute bottom-5 left-5 rounded-xl border border-white/30 bg-black/40 px-4 py-3 backdrop-blur-sm">
-                <span className="block font-heading text-2xl font-extrabold text-white">
-                  Since {story.since}
-                </span>
-                <span className="block text-xs uppercase tracking-wide text-white/80">
-                  Building in Nagpur
-                </span>
-              </div>
+            <div className="rounded-2xl border border-border bg-surface-raised p-6 sm:p-8">
+              <h3 className="font-heading text-lg font-bold text-ink">Where we have built</h3>
+              <ul className="mt-5 grid border-t border-border sm:grid-cols-2 sm:gap-x-8">
+                {localities.map(([name, count]) => (
+                  <li
+                    key={name}
+                    className="flex items-baseline justify-between gap-6 border-b border-border py-3"
+                  >
+                    <span className="text-sm font-medium text-ink">{name}</span>
+                    <span className="font-heading text-sm font-bold tabular-nums text-brand-crimson-500">
+                      {count}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-xs leading-relaxed text-ink-muted">
+                Projects delivered or under way, by locality. All of them in Nagpur, all of
+                them since {story.since}.
+              </p>
             </div>
           </Reveal>
         </div>
@@ -88,30 +101,31 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-band py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-            <Reveal direction="left" className="relative">
-              <span className="pointer-events-none absolute -top-10 left-0 select-none font-heading text-8xl font-extrabold text-white/5">
-                01
-              </span>
-              <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-brand-crimson-500/15 text-brand-crimson-100">
-                <Icon name="flag" className="h-6 w-6" />
-              </div>
-              <h2 className="relative mt-5 font-heading text-2xl font-bold text-white">Our Mission</h2>
-              <p className="relative mt-4 max-w-prose text-sm leading-relaxed text-white/75">{mission}</p>
-            </Reveal>
-            <Reveal direction="right" delay={100} className="relative md:border-l md:border-white/10 md:pl-16">
-              <span className="pointer-events-none absolute -top-10 left-0 select-none font-heading text-8xl font-extrabold text-white/5 md:left-16">
-                02
-              </span>
-              <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-brand-crimson-500/15 text-brand-crimson-100">
-                <Icon name="compass" className="h-6 w-6" />
-              </div>
-              <h2 className="relative mt-5 font-heading text-2xl font-bold text-white">Our Vision</h2>
-              <p className="relative mt-4 max-w-prose text-sm leading-relaxed text-white/75">{vision}</p>
-            </Reveal>
-          </div>
+      {/* Mission and vision read as two stacked rows rather than a side-by-side pair:
+          the one-line statement carries the heading, the existing detail sits beside it,
+          and the two rows mirror each other (statement left, then statement right) so the
+          eye crosses the page instead of scanning two matching columns. Not a crimson
+          band: the stats bar directly above already is one, and two filled bands back to
+          back read as a single slab of maroon, worst of all in dark mode. */}
+      <section className="bg-surface py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl divide-y divide-border px-4 sm:px-6 lg:px-8">
+          <Reveal direction="left">
+            <div className="grid gap-5 pb-14 md:grid-cols-2 md:gap-16 md:pb-16">
+              <h2 className="font-heading text-2xl font-bold leading-snug text-ink sm:text-3xl">
+                {mission.statement}
+              </h2>
+              <p className="leading-relaxed text-ink-muted md:pt-2">{mission.body}</p>
+            </div>
+          </Reveal>
+
+          <Reveal direction="right" delay={100}>
+            <div className="grid gap-5 pt-14 md:grid-cols-2 md:gap-16 md:pt-16">
+              <h2 className="font-heading text-2xl font-bold leading-snug text-ink sm:text-3xl md:order-2">
+                {vision.statement}
+              </h2>
+              <p className="leading-relaxed text-ink-muted md:order-1 md:pt-2">{vision.body}</p>
+            </div>
+          </Reveal>
         </div>
       </section>
 

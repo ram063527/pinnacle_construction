@@ -20,18 +20,20 @@ export async function generateMetadata({ params }) {
 }
 
 const landmarkLabels = {
-  school: "Nearest School",
-  petrolPump: "Petrol Pump",
+  school: "School",
   hospital: "Hospital",
   supermarket: "Supermarket",
-  airportOrStation: "Airport / Station",
+  petrolPump: "Petrol Pump",
+  metro: "Metro",
+  airportOrStation: "Airport",
 };
 
 const landmarkIcons = {
   school: "academicCap",
-  petrolPump: "fuel",
   hospital: "medicalCross",
   supermarket: "shoppingCart",
+  petrolPump: "fuel",
+  metro: "train",
   airportOrStation: "plane",
 };
 
@@ -44,7 +46,7 @@ export default async function ProjectDetailPage({ params }) {
   // publish, and nothing to book a visit to. Everything below branches on that rather
   // than promising a visitor something that can never arrive.
   const isCompleted = project.status === "completed";
-  const hasLandmarks = Object.values(project.landmarks).some(Boolean);
+  const hasLandmarks = project.landmarks.length > 0;
   const configLabels = project.configurations.map((c) => c.label).join(", ");
 
   return (
@@ -154,34 +156,56 @@ export default async function ProjectDetailPage({ params }) {
 
           {hasLandmarks && (
             <div className="mt-10">
-              <h2 className="font-heading text-2xl font-bold text-ink">Nearby</h2>
+              <h2 className="font-heading text-2xl font-bold text-ink">What&apos;s nearby</h2>
               <dl className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
-                {Object.entries(project.landmarks)
-                  .filter(([, value]) => Boolean(value))
-                  .map(([key, value]) => (
-                    <div key={key} className="rounded-xl border border-border bg-surface-raised p-4 transition-all hover:-translate-y-0.5 hover:shadow-md">
-                      <Icon name={landmarkIcons[key]} className="h-5 w-5 text-brand-crimson-500" />
-                      <dt className="mt-2 text-xs uppercase tracking-wide text-ink-muted">
-                        {landmarkLabels[key] ?? key}
-                      </dt>
-                      <dd className="mt-1 font-heading text-base font-semibold text-ink">{value}</dd>
-                    </div>
-                  ))}
+                {project.landmarks.map((landmark) => (
+                  <div
+                    key={landmark.kind}
+                    className="rounded-xl border border-border bg-surface-raised p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
+                  >
+                    <Icon
+                      name={landmarkIcons[landmark.kind]}
+                      className="h-5 w-5 text-brand-crimson-500"
+                    />
+                    <dt className="mt-2 text-xs uppercase tracking-wide text-ink-muted">
+                      {landmarkLabels[landmark.kind] ?? landmark.kind}
+                    </dt>
+                    <dd className="mt-1 font-heading text-base font-semibold leading-snug text-ink">
+                      {landmark.name}
+                    </dd>
+                    <dd className="mt-1 text-sm text-ink-muted">approx. {landmark.km} km</dd>
+                  </div>
+                ))}
               </dl>
+              <p className="mt-3 text-xs leading-relaxed text-ink-muted">
+                Distances are approximate and measured to the locality rather than to this
+                plot. Travel time varies with the route you take.
+              </p>
             </div>
           )}
 
+          {/* The reels are filmed on a phone, so they are 9:16. A 16:9 frame would
+              letterbox them into a thin strip. The player keeps the source ratio and
+              is capped in width, matted on the panel so the space beside it reads as
+              deliberate rather than as a broken embed. */}
           {project.videoReelYoutubeId && (
             <div className="mt-10">
-              <h2 className="font-heading text-2xl font-bold text-ink">Video Tour</h2>
-              <div className="mt-4 aspect-video overflow-hidden rounded-2xl">
-                <iframe
-                  className="h-full w-full"
-                  src={`https://www.youtube-nocookie.com/embed/${project.videoReelYoutubeId}`}
-                  title={`${project.name} video tour`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+              <h2 className="font-heading text-2xl font-bold text-ink">
+                Sample apartment walkthrough
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                Filmed inside a sample apartment at {project.name}, not a render.
+              </p>
+              <div className="mt-4 rounded-2xl border border-border bg-surface-raised p-4 sm:p-6">
+                <div className="mx-auto aspect-9/16 w-full max-w-[320px] overflow-hidden rounded-xl bg-black">
+                  <iframe
+                    className="h-full w-full"
+                    src={`https://www.youtube-nocookie.com/embed/${project.videoReelYoutubeId}`}
+                    title={`Sample apartment walkthrough at ${project.name}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
               </div>
             </div>
           )}
