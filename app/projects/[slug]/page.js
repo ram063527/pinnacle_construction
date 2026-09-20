@@ -85,7 +85,7 @@ export default async function ProjectDetailPage({ params }) {
             <div className="mt-4 grid gap-6 sm:grid-cols-2">
               {project.configurations.map((config) => (
                 <div key={config.label} className="rounded-2xl border border-border bg-surface-raised p-6 transition-all hover:shadow-md">
-                  <h3 className="font-heading text-lg font-bold text-brand-blue-600">{config.label}</h3>
+                  <h3 className="font-heading text-lg font-bold text-brand-crimson-600">{config.label}</h3>
                   <p className="mt-1 text-sm text-ink-muted">
                     {config.carpetAreaSqFt
                       ? `${config.carpetAreaSqFt} sq. ft. carpet area`
@@ -113,7 +113,7 @@ export default async function ProjectDetailPage({ params }) {
             <dl className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
               {Object.entries(project.landmarks).map(([key, value]) => (
                 <div key={key} className="rounded-xl border border-border bg-surface-raised p-4 transition-all hover:-translate-y-0.5 hover:shadow-md">
-                  <Icon name={landmarkIcons[key]} className="h-5 w-5 text-brand-blue-500" />
+                  <Icon name={landmarkIcons[key]} className="h-5 w-5 text-brand-crimson-500" />
                   <dt className="mt-2 text-xs uppercase tracking-wide text-ink-muted">
                     {landmarkLabels[key] ?? key}
                   </dt>

@@ -37,7 +37,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/projects"
-              className="rounded-full bg-brand-blue-500 px-7 py-3.5 font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-blue-600 hover:shadow-lg"
+              className="rounded-full bg-brand-crimson-500 px-7 py-3.5 font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-crimson-600 hover:shadow-lg"
             >
               Explore Projects
             </Link>
@@ -52,7 +52,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats bar */}
-      <section className="border-b border-border bg-brand-blue-600">
+      <section className="border-b border-border bg-brand-crimson-600">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-10 text-center sm:px-6 md:grid-cols-4 lg:px-8">
           {stats.map((stat, index) => (
             <Reveal key={stat.label} delay={index * 80} className="flex flex-col items-center">
@@ -82,10 +82,10 @@ export default function HomePage() {
               delay={(index % 3) * 100}
               className="rounded-2xl border border-border bg-surface-raised p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue-50 text-brand-blue-600">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-crimson-50 text-brand-crimson-600">
                 <Icon name={item.icon} className="h-6 w-6" />
               </div>
-              <h3 className="mt-4 font-heading text-lg font-semibold text-brand-blue-600">{item.title}</h3>
+              <h3 className="mt-4 font-heading text-lg font-semibold text-brand-crimson-600">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.description}</p>
             </Reveal>
           ))}
@@ -152,12 +152,12 @@ export default function HomePage() {
             <Reveal
               key={item.title}
               delay={(index % 3) * 100}
-              className="rounded-2xl bg-brand-blue-50 p-6 transition-all hover:-translate-y-1 hover:shadow-md"
+              className="rounded-2xl border border-border bg-surface-raised p-6 transition-all hover:-translate-y-1 hover:shadow-md"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-raised text-brand-blue-600">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-crimson-50 text-brand-crimson-600">
                 <Icon name={item.icon} className="h-6 w-6" />
               </div>
-              <h3 className="mt-4 font-heading text-lg font-semibold text-brand-blue-700">{item.title}</h3>
+              <h3 className="mt-4 font-heading text-lg font-semibold text-brand-crimson-600">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.description}</p>
             </Reveal>
           ))}

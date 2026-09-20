@@ -18,7 +18,7 @@ export default function BookingForm() {
   if (submitted) {
     return (
       <div className="rounded-2xl border border-border bg-surface-raised p-8 text-center">
-        <h3 className="font-heading text-xl font-bold text-brand-blue-600">Thank you</h3>
+        <h3 className="font-heading text-xl font-bold text-brand-crimson-600">Thank you</h3>
         <p className="mt-2 text-sm text-ink-muted">
           We&apos;ve received your request and will get back to you within 24 hours to confirm your site visit.
         </p>

@@ -31,19 +31,23 @@
   --ink-muted: #a4acbb;
   --border: #2a313d;
 
-  --brand-blue-50: #14232f;
-  --brand-blue-100: #17324a;
-  --brand-blue-400: #4a9bd6;
-  --brand-blue-500: #5aabe2;
-  --brand-blue-600: #7fc0ea;
-  --brand-blue-700: #a9d6f2;
+  /* Blue is retired in dark mode: these tokens resolve to neutral grays so any
+     lingering "little element" blue class (link hover, focus ring) never
+     actually renders as blue once .dark is active. Crimson is the only
+     accent color in dark mode. */
+  --brand-blue-50: #1b212b;
+  --brand-blue-100: #242b37;
+  --brand-blue-400: #6b7280;
+  --brand-blue-500: #8b93a3;
+  --brand-blue-600: #a4acbb;
+  --brand-blue-700: #c5cbd6;
 
-  --brand-crimson-50: #2a1620;
-  --brand-crimson-100: #3d1b28;
-  --brand-crimson-400: #dd6180;
-  --brand-crimson-500: #e77e97;
-  --brand-crimson-600: #ef9caf;
-  --brand-crimson-700: #f4b7c5;
+  --brand-crimson-50: #2a1418;
+  --brand-crimson-100: #3d1a20;
+  --brand-crimson-400: #ff6b7a;
+  --brand-crimson-500: #ff4757;
+  --brand-crimson-600: #ff7a86;
+  --brand-crimson-700: #ffa3ac;
 }
 
 @theme inline {

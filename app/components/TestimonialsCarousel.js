@@ -78,7 +78,7 @@ export default function TestimonialsCarousel({ testimonials }) {
                 &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-5">
-                <span className="font-heading text-sm font-semibold text-brand-blue-600">
+                <span className="font-heading text-sm font-semibold text-brand-crimson-600">
                   {testimonial.author}
                 </span>
                 {testimonial.unit && (
@@ -118,7 +118,7 @@ export default function TestimonialsCarousel({ testimonials }) {
                 aria-label={`Go to testimonial ${i + 1}`}
                 aria-current={i === index}
                 className={`h-2 rounded-full transition-all ${
-                  i === index ? "w-6 bg-brand-blue-500" : "w-2 bg-border hover:bg-brand-blue-400"
+                  i === index ? "w-6 bg-brand-crimson-500" : "w-2 bg-border hover:bg-brand-crimson-400"
                 }`}
               />
             ))}

@@ -106,7 +106,8 @@
       "Pill-shaped (rounded-full) buttons and status badges throughout; no square or slightly-rounded buttons observed"
     ],
     "rules": [
-      { "name": "The Two-Voice Rule", "body": "Blue and Crimson never share a job. Blue drives wayfinding and primary exploration actions; Crimson is reserved exclusively for conversion (booking, WhatsApp-adjacent CTAs, status badges). A single button or badge is never given both colors, and a screen's primary CTA and secondary CTA are never both Crimson.", "section": "colors" },
+      { "name": "The One-Accent Rule", "body": "Crimson is the only color that carries visual weight: backgrounds, buttons, icons, and headings. No second brand hue competes with it.", "section": "colors" },
+      { "name": "The Interaction-Only Blue Rule", "body": "Blue appears only as a hover/focus signal (nav underline, link hover, form focus border) and never fills a background, icon, or heading. In dark mode the blue tokens themselves resolve to neutral gray, so no blue renders at all.", "section": "colors" },
       { "name": "The Never-Pure Rule", "body": "Neither theme touches #ffffff/#000000 as a background: light mode sits on warm paper (#faf8f5), dark mode sits on charcoal (#14181f). Card surfaces borrow true white/near-black only as the raised layer, never as the page base.", "section": "colors" },
       { "name": "The Heading-Only Sora Rule", "body": "Sora is applied exclusively via the h1-h6 selector and .font-heading utility; body copy, buttons, form fields, and nav links are always Inter, even inside heading-adjacent components.", "section": "typography" },
       { "name": "The Border-First Rule", "body": "Depth is established by a hairline border and a background-shade step before shadow is ever introduced. Shadow only appears as a hover response on clickable cards -- never as a static resting effect, and never as a hard offset/neobrutalist shadow.", "section": "elevation" }

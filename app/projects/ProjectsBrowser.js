@@ -91,7 +91,7 @@ export default function ProjectsBrowser({ projects }) {
             <div className="p-6">
               <h3 className="font-heading text-lg font-bold text-ink">{project.name}</h3>
               <p className="mt-1 text-sm text-ink-muted">{project.location}</p>
-              <p className="mt-1 text-xs uppercase tracking-wide text-brand-blue-500">
+              <p className="mt-1 text-xs uppercase tracking-wide text-brand-crimson-500">
                 {project.configurations.map((c) => c.label).join(", ")}
               </p>
             </div>

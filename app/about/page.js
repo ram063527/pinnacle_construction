@@ -20,7 +20,7 @@ function initials(name) {
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-brand-blue-600 py-16 text-center">
+      <section className="bg-brand-crimson-600 py-16 text-center">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <p className="font-body text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
             Since {story.since}
@@ -40,7 +40,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-brand-blue-600">
+      <section className="border-y border-border bg-brand-crimson-600">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-10 text-center sm:px-6 md:grid-cols-4 lg:px-8">
           {stats.map((stat, index) => (
             <Reveal key={stat.label} delay={index * 80} className="flex flex-col items-center">
@@ -56,7 +56,7 @@ export default function AboutPage() {
 
       <section className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 md:grid-cols-2 lg:px-8">
         <Reveal className="rounded-2xl border border-border bg-surface-raised p-8 transition-all hover:-translate-y-1 hover:shadow-md">
-          <h2 className="font-heading text-xl font-bold text-brand-blue-600">Our Mission</h2>
+          <h2 className="font-heading text-xl font-bold text-ink">Our Mission</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">{mission}</p>
         </Reveal>
         <Reveal delay={100} className="rounded-2xl border border-border bg-surface-raised p-8 transition-all hover:-translate-y-1 hover:shadow-md">
@@ -75,10 +75,10 @@ export default function AboutPage() {
                 delay={(index % 3) * 100}
                 className="rounded-2xl border border-border bg-surface p-6 transition-all hover:-translate-y-1 hover:shadow-md"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue-50 text-brand-blue-600">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-crimson-50 text-brand-crimson-600">
                   <Icon name={item.icon} className="h-6 w-6" />
                 </div>
-                <h3 className="mt-4 font-heading text-lg font-semibold text-brand-blue-600">{item.title}</h3>
+                <h3 className="mt-4 font-heading text-lg font-semibold text-brand-crimson-600">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.description}</p>
               </Reveal>
             ))}
@@ -95,7 +95,7 @@ export default function AboutPage() {
               delay={(index % 4) * 100}
               className="rounded-2xl border border-border bg-surface-raised p-6 text-center transition-all hover:-translate-y-1 hover:shadow-md"
             >
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-blue-500 font-heading text-lg font-bold text-white">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-crimson-500 font-heading text-lg font-bold text-white">
                 {initials(member.name)}
               </div>
               <h3 className="mt-4 font-heading text-base font-semibold text-ink">{member.name}</h3>

@@ -100,23 +100,22 @@ Confirmed rejections observed in the build: no hard-offset/neobrutalist shadows,
 
 ## Colors
 
-The palette is warm and restrained at rest, with the two brand hues doing all of the color signaling — nothing else in the system carries color.
+Crimson is the one brand accent. It carries every element with visual or structural weight — buttons, section backgrounds, icon accents, badges, headings that need color. Blue survives only as a near-invisible interaction cue and disappears entirely in dark mode.
 
 ### Primary
-- **Pinnacle Blue** (`#1c6dae`, dark-mode: `#5aabe2`): navigation hover states, primary hero CTA ("Explore Projects"), section headings on card content (Why Choose Us titles, Mission heading), links, focus ring on all form fields (`focus:border-brand-blue-500`). This is the "informational/navigational" voice — it invites exploration.
-
-### Secondary
-- **Pinnacle Crimson** (`#ae1f3d`, dark-mode: `#e77e97`): every conversion moment — "Book a Site Visit" in the header, on project cards, on the final CTA band, and as the BookingForm submit button; also the project status badge (`Ongoing`/`Upcoming`/`Completed`) and the Vision/service/team-role accents. This is the "act now" voice.
+- **Pinnacle Crimson** (`#ae1f3d`, dark-mode: `#ff4757`): every CTA (hero, header, final band, forms), every section band that needs a color fill (stats bar, About hero band), every icon-accent circle and its heading (Why Choose Us, Amenities, Services, landmarks, contact info headings), status badges, config/tag labels, the footer brand name, and the testimonial carousel's author name and dot indicators. Dark mode uses a brighter, more saturated red (not a washed-out pink) so it still reads as confidently red against charcoal.
 
 ### Neutral
 - **Warm Paper** (`#faf8f5`, dark-mode `#14181f`): page background (`surface`).
 - **Raised White** (`#ffffff`, dark-mode `#1b212b`): card, form, and header-panel background (`surface-raised`) — always one step lighter (light mode) or lighter-adjacent (dark mode) than the page background.
-- **Ink** (`#1c2029`, dark-mode `#edeff3`): primary text.
+- **Ink** (`#1c2029`, dark-mode `#edeff3`): primary text, and any heading that doesn't need brand color (e.g. "Our Mission", kept neutral specifically so it reads distinctly from the crimson "Our Vision" beside it).
 - **Muted Ink** (`#565d6d`, dark-mode `#a4acbb`): secondary/supporting text — descriptions, captions, labels.
 - **Hairline Border** (`#e7e2d9`, dark-mode `#2a313d`): all card, input, and section-divider borders.
 
 ### Named Rules
-**The Two-Voice Rule.** Blue and Crimson never share a job. Blue drives wayfinding and primary exploration actions; Crimson is reserved exclusively for conversion (booking, WhatsApp-adjacent CTAs, status badges). A single button or badge is never given both colors, and a screen's primary CTA and secondary CTA are never both Crimson.
+**The One-Accent Rule.** Crimson is the only color that carries visual weight — no second brand hue competes with it for backgrounds, buttons, icons, or headings. A blue color token still exists in code, but only for the tiniest interaction cues (see the Interaction-Only Blue Rule); nothing structural is ever blue.
+
+**The Interaction-Only Blue Rule.** Blue appears only as a hover/focus signal on things the visitor is about to act on: a nav-link's hover underline, a secondary link's hover color, and a form field's focus border. It never fills a background, never colors an icon or heading, and never appears on anything that isn't currently being hovered or focused. In dark mode the blue tokens themselves are remapped to neutral gray in `globals.css`, so this rule holds automatically even if a class is left in place — dark mode has no blue at all.
 
 **The Never-Pure Rule.** Neither theme touches `#ffffff`/`#000000` as a background: light mode sits on warm paper (`#faf8f5`), dark mode sits on charcoal (`#14181f`). Card surfaces borrow true white/near-black only as the *raised* layer, never as the page base.
 

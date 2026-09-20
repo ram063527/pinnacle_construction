@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="border-t border-border bg-surface-raised">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
         <div>
-          <h3 className="font-heading text-lg font-bold text-brand-blue-600">Pinnacle Construction</h3>
+          <h3 className="font-heading text-lg font-bold text-brand-crimson-600">Pinnacle Construction</h3>
           <p className="mt-3 max-w-xs text-sm text-ink-muted">
             15 years of building trusted homes in Nagpur. 43 projects completed, 521 happy clients.
           </p>

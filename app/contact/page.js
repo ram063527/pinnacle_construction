@@ -21,7 +21,7 @@ export default function ContactPage() {
       <div className="mt-10 grid gap-10 lg:grid-cols-2">
         <div className="space-y-8">
           <div>
-            <div className="flex items-center gap-2 text-brand-blue-600">
+            <div className="flex items-center gap-2 text-brand-crimson-600">
               <Icon name="phone" className="h-5 w-5" />
               <h2 className="font-heading text-lg font-bold">Call Us</h2>
             </div>
@@ -32,7 +32,7 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <div className="flex items-center gap-2 text-brand-blue-600">
+            <div className="flex items-center gap-2 text-brand-crimson-600">
               <Icon name="envelope" className="h-5 w-5" />
               <h2 className="font-heading text-lg font-bold">Our Message</h2>
             </div>
@@ -41,7 +41,7 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <div className="flex items-center gap-2 text-brand-blue-600">
+            <div className="flex items-center gap-2 text-brand-crimson-600">
               <Icon name="mapPin" className="h-5 w-5" />
               <h2 className="font-heading text-lg font-bold">Our Location</h2>
             </div>
