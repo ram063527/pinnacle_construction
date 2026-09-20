@@ -7,8 +7,14 @@ import Reveal from "@/app/components/Reveal";
 import CountUp from "@/app/components/CountUp";
 import TestimonialsCarousel from "@/app/components/TestimonialsCarousel";
 
+// The hero already shows this one full-bleed; the strip beneath it covers the rest.
+const HERO_SLUG = "dravin-enclave";
+
 export default function HomePage() {
   const featuredProjects = projects.filter((project) => project.featured);
+  const heroStrip = projects
+    .filter((project) => project.status !== "completed" && project.slug !== HERO_SLUG)
+    .slice(0, 5);
 
   return (
     <>
@@ -19,15 +25,13 @@ export default function HomePage() {
           alt="Dravin Enclave, an ongoing Pinnacle Construction residential project in Nagpur"
           fill
           priority
+          sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
 
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-          <p className="font-body text-sm font-semibold uppercase tracking-[0.2em] text-brand-crimson-400">
-            Pinnacle Construction · Nagpur
-          </p>
-          <h1 className="mt-4 max-w-2xl font-heading text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+        <div className="relative mx-auto w-full max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+          <h1 className="max-w-2xl font-heading text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
             15 years of building homes families trust
           </h1>
           <p className="mt-5 max-w-xl text-lg text-white/85">
@@ -37,7 +41,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/projects"
-              className="rounded-full bg-brand-crimson-500 px-7 py-3.5 font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-crimson-600 hover:shadow-lg"
+              className="rounded-full bg-cta px-7 py-3.5 font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-cta-hover hover:shadow-lg"
             >
               Explore Projects
             </Link>
@@ -48,11 +52,33 @@ export default function HomePage() {
               Book a Site Visit
             </Link>
           </div>
+
+          <div className="mt-10 hidden gap-3 border-t border-white/20 pt-6 sm:flex">
+            {heroStrip.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                className="group relative h-20 w-32 shrink-0 overflow-hidden rounded-xl border border-white/25 transition-all hover:-translate-y-1 hover:border-white/60 lg:h-24 lg:w-40"
+              >
+                <Image
+                  src={project.renders[0]}
+                  alt=""
+                  fill
+                  sizes="160px"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <span className="absolute inset-0 bg-gradient-to-t from-black/85 to-black/10" />
+                <span className="absolute inset-x-2 bottom-1.5 truncate text-[11px] font-semibold text-white">
+                  {project.name}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Stats bar */}
-      <section className="border-b border-border bg-brand-crimson-600">
+      <section className="border-b border-border bg-band-deep">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-10 text-center sm:px-6 md:grid-cols-4 lg:px-8">
           {stats.map((stat, index) => (
             <Reveal key={stat.label} delay={index * 80} className="flex flex-col items-center">
@@ -61,32 +87,6 @@ export default function HomePage() {
                 <CountUp value={stat.value} suffix={stat.label !== "Years Experience" ? "+" : ""} />
               </div>
               <div className="mt-1 text-sm font-medium text-white/80">{stat.label}</div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Why choose us */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">Why Choose Us</h2>
-          <p className="mt-3 text-ink-muted">
-            A track record built on quality, transparency, and homes delivered on schedule.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {whyChooseUs.map((item, index) => (
-            <Reveal
-              key={item.title}
-              delay={(index % 3) * 100}
-              className="rounded-2xl border border-border bg-surface-raised p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-crimson-50 text-brand-crimson-600">
-                <Icon name={item.icon} className="h-6 w-6" />
-              </div>
-              <h3 className="mt-4 font-heading text-lg font-semibold text-brand-crimson-600">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.description}</p>
             </Reveal>
           ))}
         </div>
@@ -122,9 +122,10 @@ export default function HomePage() {
                       src={project.renders[0]}
                       alt={`${project.name} render`}
                       fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <span className="absolute left-4 top-4 rounded-full bg-brand-crimson-500 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                    <span className="absolute left-4 top-4 rounded-full bg-cta px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
                       {project.status}
                     </span>
                   </div>
@@ -137,6 +138,32 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Why choose us */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">Why Choose Us</h2>
+          <p className="mt-3 text-ink-muted">
+            A track record built on quality, transparency, and homes delivered on schedule.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {whyChooseUs.map((item, index) => (
+            <Reveal
+              key={item.title}
+              delay={(index % 3) * 100}
+              className="rounded-2xl border border-border bg-surface-raised p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-crimson-50 text-brand-crimson-600">
+                <Icon name={item.icon} className="h-6 w-6" />
+              </div>
+              <h3 className="mt-4 font-heading text-lg font-semibold text-brand-crimson-600">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.description}</p>
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -170,23 +197,18 @@ export default function HomePage() {
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">Services We Offer</h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {services.map((service, index) => (
-              <Reveal
-                key={service.title}
-                delay={index * 100}
-                className="rounded-2xl border border-border bg-surface p-8 text-center transition-all hover:-translate-y-1 hover:shadow-md"
-              >
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-crimson-50 text-brand-crimson-500">
-                  <Icon name={service.icon} className="h-6 w-6" />
+
+          <Reveal delay={100} className="mt-12 overflow-hidden rounded-2xl border border-border bg-surface">
+            <div className="grid divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0">
+              {services.map((service) => (
+                <div key={service.title} className="p-8 lg:p-10">
+                  <Icon name={service.icon} className="h-8 w-8 text-brand-crimson-500" />
+                  <h3 className="mt-5 font-heading text-xl font-bold text-ink">{service.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">{service.description}</p>
                 </div>
-                <h3 className="mt-4 font-heading text-lg font-semibold text-brand-crimson-500">
-                  {service.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{service.description}</p>
-              </Reveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -224,7 +246,7 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-brand-crimson-500 py-16">
+      <section className="bg-band py-16">
         <Reveal className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Ready to find your next home?
@@ -234,7 +256,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-block rounded-full bg-white px-8 py-3.5 font-semibold text-brand-crimson-600 transition-all hover:-translate-y-0.5 hover:bg-white/90 hover:shadow-lg"
+            className="mt-8 inline-block rounded-full bg-white px-8 py-3.5 font-semibold text-band transition-all hover:-translate-y-0.5 hover:bg-white/90 hover:shadow-lg"
           >
             Book a Site Visit
           </Link>

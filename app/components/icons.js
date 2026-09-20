@@ -284,6 +284,14 @@ export function IconSearch(props) {
   );
 }
 
+export function IconCheck(props) {
+  return (
+    <Svg {...props}>
+      <path d="m4.5 12.5 5 5 10-11" />
+    </Svg>
+  );
+}
+
 export const iconMap = {
   trophy: IconTrophy,
   eye: IconEye,
@@ -314,6 +322,7 @@ export const iconMap = {
   chevronLeft: IconChevronLeft,
   chevronRight: IconChevronRight,
   quote: IconQuote,
+  check: IconCheck,
 };
 
 export function Icon({ name, className }) {

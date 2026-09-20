@@ -12,7 +12,7 @@ export default function ProjectsPage() {
       <div className="max-w-2xl">
         <h1 className="font-heading text-4xl font-extrabold text-ink">Our Projects</h1>
         <p className="mt-3 text-ink-muted">
-          Search by name, filter by location or configuration, and find the home that fits your family.
+          Filter by build stage or area, or search by name. Ongoing and upcoming homes are listed first.
         </p>
       </div>
 

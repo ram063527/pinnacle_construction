@@ -26,18 +26,41 @@ export default function ContactPage() {
               <h2 className="font-heading text-lg font-bold">Call Us</h2>
             </div>
             <p className="mt-1 text-sm text-ink-muted">Talk to our experts about how we can work together.</p>
-            <p className="mt-2 font-heading text-xl font-bold text-ink">{contact.phones[0]}</p>
-            <p className="font-heading text-xl font-bold text-ink">{contact.phones[1]}</p>
+            <div className="mt-2 flex flex-col items-start gap-1">
+              {contact.phones.map((phone) => (
+                <a
+                  key={phone}
+                  href={`tel:+91${phone}`}
+                  className="font-heading text-xl font-bold text-ink underline-offset-4 transition-colors hover:text-brand-crimson-500 hover:underline"
+                >
+                  {phone}
+                </a>
+              ))}
+            </div>
             <p className="mt-2 text-sm text-ink-muted">{contact.hours}</p>
+            <a
+              href={`https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-cta px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-cta-hover hover:shadow-md"
+            >
+              <Icon name="phone" className="h-4 w-4" />
+              Chat on WhatsApp
+            </a>
           </div>
 
           <div>
             <div className="flex items-center gap-2 text-brand-crimson-600">
               <Icon name="envelope" className="h-5 w-5" />
-              <h2 className="font-heading text-lg font-bold">Our Message</h2>
+              <h2 className="font-heading text-lg font-bold">Email Us</h2>
             </div>
             <p className="mt-1 text-sm text-ink-muted">We&apos;re usually replying within 24 hours.</p>
-            <p className="mt-2 font-heading text-lg font-semibold text-ink">{contact.email}</p>
+            <a
+              href={`mailto:${contact.email}`}
+              className="mt-2 inline-block font-heading text-lg font-semibold text-ink underline-offset-4 transition-colors hover:text-brand-crimson-500 hover:underline"
+            >
+              {contact.email}
+            </a>
           </div>
 
           <div>

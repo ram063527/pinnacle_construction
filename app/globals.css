@@ -22,6 +22,22 @@
   --brand-crimson-500: #ae1f3d;
   --brand-crimson-600: #8a1830;
   --brand-crimson-700: #6d1327;
+
+  /* Full-width crimson fills (stats bar, closing CTA). Kept separate from the
+     crimson scale because the dark scale runs *lighter*, which turns a full-bleed
+     band into an error-state red instead of brand crimson. */
+  --band: #ae1f3d;
+  --band-deep: #8a1830;
+
+  /* Status is the axis buyers navigate by, so it gets its own colour, not the brand
+     accent three times over. These badges always sit on project photography, so the
+     values are theme-independent: all three clear 4.5:1 against white label text. */
+  --status-ongoing: #ae1f3d;
+  --status-upcoming: #8a5200;
+  --status-completed: #414b59;
+
+  --cta: #ae1f3d;
+  --cta-hover: #8a1830;
 }
 
 .dark {
@@ -48,6 +64,12 @@
   --brand-crimson-500: #ff4757;
   --brand-crimson-600: #ff7a86;
   --brand-crimson-700: #ffa3ac;
+
+  --band: #6e1224;
+  --band-deep: #560d1c;
+
+  --cta: #a81a38;
+  --cta-hover: #8a1830;
 }
 
 @theme inline {
@@ -70,6 +92,16 @@
   --color-brand-crimson-500: var(--brand-crimson-500);
   --color-brand-crimson-600: var(--brand-crimson-600);
   --color-brand-crimson-700: var(--brand-crimson-700);
+
+  --color-band: var(--band);
+  --color-band-deep: var(--band-deep);
+
+  --color-status-ongoing: var(--status-ongoing);
+  --color-status-upcoming: var(--status-upcoming);
+  --color-status-completed: var(--status-completed);
+
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
 
   --font-heading: var(--font-sora);
   --font-body: var(--font-inter);

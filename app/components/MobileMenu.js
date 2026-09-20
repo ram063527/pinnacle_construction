@@ -59,7 +59,7 @@ export default function MobileMenu() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 block rounded-full bg-brand-crimson-500 px-4 py-3 text-center font-semibold text-white transition-transform hover:-translate-y-0.5"
+              className="mt-2 block rounded-full bg-cta px-4 py-3 text-center font-semibold text-white transition-transform hover:-translate-y-0.5"
             >
               Book a Site Visit
             </Link>

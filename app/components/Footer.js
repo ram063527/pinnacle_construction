@@ -30,8 +30,37 @@ export default function Footer() {
             Get in Touch
           </h4>
           <ul className="mt-4 space-y-2 text-sm text-ink-muted">
-            <li>{contact.phones[0]} / {contact.phones[1]}</li>
-            <li>{contact.email}</li>
+            <li className="flex flex-wrap gap-x-2">
+              {contact.phones.map((phone, index) => (
+                <span key={phone} className="flex gap-x-2">
+                  {index > 0 && <span aria-hidden="true">/</span>}
+                  <a
+                    href={`tel:+91${phone}`}
+                    className="underline-offset-4 transition-colors hover:text-brand-crimson-500 hover:underline"
+                  >
+                    {phone}
+                  </a>
+                </span>
+              ))}
+            </li>
+            <li>
+              <a
+                href={`mailto:${contact.email}`}
+                className="break-all underline-offset-4 transition-colors hover:text-brand-crimson-500 hover:underline"
+              >
+                {contact.email}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline-offset-4 transition-colors hover:text-brand-crimson-500 hover:underline"
+              >
+                WhatsApp us
+              </a>
+            </li>
             <li>{contact.address}</li>
           </ul>
         </div>
