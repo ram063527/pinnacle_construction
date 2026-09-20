@@ -191,6 +191,11 @@ Radius is deliberately tiered by role: `rounded-lg` (8px) on all form inputs and
 - **Count-up:** `app/components/CountUp.js` animates the stats bar numbers from 0 to their real value (cubic ease-out, ~1.2s) the first time they scroll into view; shows the final number immediately under reduced motion.
 - **Hover:** cards and buttons lift (`-translate-y-0.5` to `-translate-y-1`) and gain elevation (`shadow-md`/`shadow-lg`) on hover; nothing else moves on hover (no rotation, no color-only card hovers).
 
+### Testimonial Carousel
+- **Style:** `app/components/TestimonialsCarousel.js` — a single bordered `rounded-2xl` card (matching the standard card language) holding one quote at a time, centered text, a crimson quote-mark icon above the blockquote, author name in Sora/Blue below.
+- **Navigation:** circular chevron buttons on either side (desktop only, `sm:flex`), a row of dot indicators below (active dot widens to a pill and turns Blue), keyboard arrow-key support, and touch-swipe on mobile.
+- **Autoplay:** advances every 6s, pauses on hover/focus, and is skipped entirely under `prefers-reduced-motion`.
+
 ## Do's and Don'ts
 
 ### Do:

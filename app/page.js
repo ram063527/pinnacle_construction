@@ -5,6 +5,7 @@ import { projects } from "@/data/projects";
 import { Icon } from "@/app/components/icons";
 import Reveal from "@/app/components/Reveal";
 import CountUp from "@/app/components/CountUp";
+import TestimonialsCarousel from "@/app/components/TestimonialsCarousel";
 
 export default function HomePage() {
   return (
@@ -192,24 +193,9 @@ export default function HomePage() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="font-heading text-3xl font-bold text-ink sm:text-4xl">What Our Clients Say</h2>
         </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {testimonials.map((testimonial, index) => (
-            <Reveal
-              key={index}
-              delay={index * 100}
-              className="rounded-2xl border border-border bg-surface-raised p-6 transition-all hover:-translate-y-1 hover:shadow-md"
-            >
-              <figure>
-                <blockquote className="text-sm leading-relaxed text-ink-muted">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-4 font-heading text-sm font-semibold text-ink">
-                  {testimonial.author}
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={100} className="mt-12">
+          <TestimonialsCarousel testimonials={testimonials} />
+        </Reveal>
       </section>
 
       {/* Final CTA */}
