@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { projects, getProjectBySlug } from "@/data/projects";
 import { Icon } from "@/app/components/icons";
 import { badgeClass } from "@/app/components/status";
+import Reveal from "@/app/components/Reveal";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -87,7 +88,9 @@ export default async function ProjectDetailPage({ params }) {
 
       <section className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-3 lg:px-8">
         <div className="lg:col-span-2">
-          <p className="text-ink-muted leading-relaxed">{project.description}</p>
+          <Reveal>
+            <p className="text-ink-muted leading-relaxed">{project.description}</p>
+          </Reveal>
 
           {project.renders.length > 1 && (
             <div
@@ -96,25 +99,26 @@ export default async function ProjectDetailPage({ params }) {
               }`}
             >
               {project.renders.slice(1).map((render, index) => (
-                <div
-                  key={render}
-                  className={`relative overflow-hidden rounded-2xl ${
-                    project.renders.length > 2 ? "h-56" : "h-72 sm:h-96"
-                  }`}
-                >
-                  <Image
-                    src={render}
-                    alt={`${project.name} view ${index + 2}`}
-                    fill
-                    sizes={project.renders.length > 2 ? "(min-width: 640px) 33vw, 100vw" : "(min-width: 1024px) 66vw, 100vw"}
-                    className="object-cover"
-                  />
-                </div>
+                <Reveal key={render} delay={index * 100}>
+                  <div
+                    className={`relative overflow-hidden rounded-2xl ${
+                      project.renders.length > 2 ? "h-56" : "h-72 sm:h-96"
+                    }`}
+                  >
+                    <Image
+                      src={render}
+                      alt={`${project.name} view ${index + 2}`}
+                      fill
+                      sizes={project.renders.length > 2 ? "(min-width: 640px) 33vw, 100vw" : "(min-width: 1024px) 66vw, 100vw"}
+                      className="object-cover"
+                    />
+                  </div>
+                </Reveal>
               ))}
             </div>
           )}
 
-          <div className="mt-10">
+          <Reveal className="mt-10">
             <h2 className="font-heading text-2xl font-bold text-ink">Configurations</h2>
             {isCompleted ? (
               <div className="mt-4 rounded-2xl border border-border bg-surface-raised p-6">
@@ -152,10 +156,10 @@ export default async function ProjectDetailPage({ params }) {
                 ))}
               </div>
             )}
-          </div>
+          </Reveal>
 
           {hasLandmarks && (
-            <div className="mt-10">
+            <Reveal className="mt-10">
               <h2 className="font-heading text-2xl font-bold text-ink">What&apos;s nearby</h2>
               <dl className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
                 {project.landmarks.map((landmark) => (
@@ -181,15 +185,11 @@ export default async function ProjectDetailPage({ params }) {
                 Distances are approximate and measured to the locality rather than to this
                 plot. Travel time varies with the route you take.
               </p>
-            </div>
+            </Reveal>
           )}
 
-          {/* The reels are filmed on a phone, so they are 9:16. A 16:9 frame would
-              letterbox them into a thin strip. The player keeps the source ratio and
-              is capped in width, matted on the panel so the space beside it reads as
-              deliberate rather than as a broken embed. */}
           {project.videoReelYoutubeId && (
-            <div className="mt-10">
+            <Reveal className="mt-10">
               <h2 className="font-heading text-2xl font-bold text-ink">
                 Sample apartment walkthrough
               </h2>
@@ -207,10 +207,10 @@ export default async function ProjectDetailPage({ params }) {
                   />
                 </div>
               </div>
-            </div>
+            </Reveal>
           )}
 
-          <div className="mt-10">
+          <Reveal className="mt-10">
             <h2 className="font-heading text-2xl font-bold text-ink">Location</h2>
             <div className="mt-4 overflow-hidden rounded-2xl border border-border">
               <iframe
@@ -220,10 +220,10 @@ export default async function ProjectDetailPage({ params }) {
                 loading="lazy"
               />
             </div>
-          </div>
+          </Reveal>
         </div>
 
-        <aside className="h-fit rounded-2xl border border-border bg-surface-raised p-6 lg:sticky lg:top-24 lg:self-start">
+        <Reveal delay={100} className="h-fit rounded-2xl border border-border bg-surface-raised p-6 lg:sticky lg:top-24 lg:self-start">
           <h2 className="font-heading text-lg font-bold text-ink">Project Details</h2>
           <dl className="mt-4 space-y-3 text-sm">
             <div className="flex justify-between gap-4">
@@ -283,7 +283,7 @@ export default async function ProjectDetailPage({ params }) {
               )}
             </>
           )}
-        </aside>
+        </Reveal>
       </section>
     </>
   );
