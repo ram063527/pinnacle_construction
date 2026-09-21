@@ -1,48 +1,58 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
-const HIDDEN_CLASSES = {
-  up: "translate-y-6 opacity-0",
-  left: "-translate-x-8 opacity-0",
-  right: "translate-x-8 opacity-0",
-  scale: "scale-95 opacity-0",
-};
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function Reveal({ children, className = "", delay = 0, direction = "up" }) {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
 
+    gsap.registerPlugin(ScrollTrigger);
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
+      gsap.set(node, { opacity: 1, x: 0, y: 0, scale: 1 });
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
+    let initialProps = { opacity: 0 };
+    if (direction === "up") initialProps.y = 30;
+    else if (direction === "left") initialProps.x = -35;
+    else if (direction === "right") initialProps.x = 35;
+    else if (direction === "scale") initialProps.scale = 0.95;
+
+    gsap.set(node, initialProps);
+
+    const delaySec = delay ? delay / 1000 : 0;
+
+    const trigger = ScrollTrigger.create({
+      trigger: node,
+      start: "top 88%",
+      once: true,
+      onEnter: () => {
+        gsap.to(node, {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          scale: 1,
+          duration: 0.9,
+          delay: delaySec,
+          ease: "power3.out",
+          clearProps: "transform",
+        });
       },
-      { threshold: 0.15 }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+    });
+
+    return () => {
+      trigger.kill();
+    };
+  }, [delay, direction]);
 
   return (
-    <div
-      ref={ref}
-      style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
-      className={`transition-all duration-700 ease-out ${
-        visible ? "translate-x-0 translate-y-0 scale-100 opacity-100" : HIDDEN_CLASSES[direction]
-      } ${className}`}
-    >
+    <div ref={ref} className={className}>
       {children}
     </div>
   );
