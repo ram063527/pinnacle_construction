@@ -20,16 +20,17 @@ export const configuration = defineType({
       validation: (rule) => rule.min(100).max(20000),
     }),
     defineField({
-      name: "floorPlan",
-      title: "Floor plan",
-      type: "image",
+      name: "floorPlans",
+      title: "Floor plans",
+      type: "array",
       description:
-        "The layout diagram for this unit type, usually taken from the project brochure.",
-      options: { hotspot: false },
+        "Layout diagrams for this unit type, usually taken from the project brochure. Add one per variant, e.g. east- and west-facing. They show on the site in this order.",
+      of: [{ type: "image", options: { hotspot: false } }],
+      validation: (rule) => rule.max(6),
     }),
   ],
   preview: {
-    select: { label: "label", area: "carpetAreaSqFt", media: "floorPlan" },
+    select: { label: "label", area: "carpetAreaSqFt", media: "floorPlans.0" },
     prepare({ label, area, media }) {
       return {
         title: label,

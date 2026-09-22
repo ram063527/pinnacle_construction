@@ -29,7 +29,7 @@ const PROJECT_FIELDS = `
   configurations[]{
     label,
     carpetAreaSqFt,
-    "floorPlanImageUrl": floorPlan.asset->url
+    "floorPlanImageUrls": floorPlans[].asset->url
   },
   "renders": renders[].asset->url,
   "brochureUrl": brochure.asset->url,

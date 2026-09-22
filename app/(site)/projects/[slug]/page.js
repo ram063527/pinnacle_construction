@@ -183,17 +183,22 @@ export default async function ProjectDetailPage({ params }) {
                         ? `${config.carpetAreaSqFt} sq. ft. carpet area`
                         : "Approx. 1,650 sq. ft. carpet area (indicative, final figure to be confirmed)"}
                     </p>
-                    {config.floorPlanImageUrl && (
-                      <div className="relative mt-4 h-80 overflow-hidden rounded-xl border border-border">
+                    {config.floorPlanImageUrls?.map((url, index, all) => (
+                      <div
+                        key={url}
+                        className="relative mt-4 h-80 overflow-hidden rounded-xl border border-border"
+                      >
                         <Image
-                          src={config.floorPlanImageUrl}
-                          alt={`${config.label} floor plan for ${project.name}`}
+                          src={url}
+                          alt={`${config.label} floor plan${
+                            all.length > 1 ? ` ${index + 1} of ${all.length}` : ""
+                          } for ${project.name}`}
                           fill
                           sizes="(min-width: 1024px) 50vw, 100vw"
                           className="bg-white object-contain"
                         />
                       </div>
-                    )}
+                    ))}
                   </div>
                 ))}
               </div>

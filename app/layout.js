@@ -1,10 +1,5 @@
 import { Sora, Inter } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import WhatsAppButton from "./components/WhatsAppButton";
-import AnimationProvider from "./components/AnimationProvider";
-import StructuredData from "./components/StructuredData";
 import { SITE_NAME, SITE_URL } from "@/sanity/lib/site";
 
 const sora = Sora({
@@ -74,16 +69,8 @@ export default function RootLayout({ children }) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        <StructuredData />
       </head>
-      <body className="min-h-full flex flex-col bg-surface text-ink">
-        <AnimationProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <WhatsAppButton />
-        </AnimationProvider>
-      </body>
+      <body className="min-h-full flex flex-col bg-surface text-ink">{children}</body>
     </html>
   );
 }

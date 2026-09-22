@@ -182,7 +182,9 @@ async function run() {
         ...(config.carpetAreaSqFt
           ? { carpetAreaSqFt: config.carpetAreaSqFt }
           : {}),
-        ...(floorPlan ? { floorPlan } : {}),
+        ...(floorPlan
+          ? { floorPlans: [{ ...floorPlan, _key: `${project.slug}-plan-0` }] }
+          : {}),
       });
     }
 
