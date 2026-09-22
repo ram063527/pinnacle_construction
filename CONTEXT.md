@@ -1,6 +1,6 @@
 # Pinnacle Construction Website
 
-Marketing and lead-generation site for a construction company: a project catalog, company info, and a site-visit booking flow. No CMS or database; content is static data maintained by a developer.
+Marketing and lead-generation site for a construction company: a project catalog, company info, and a site-visit booking flow. Project content, testimonials, team profiles, and contact details are maintained by the client through a hosted CMS. Brand copy (stats, services, mission, vision, story) stays in code.
 
 ## Language
 
@@ -20,6 +20,14 @@ _Avoid_: Category, Kind
 The single build stage of a Project: upcoming, ongoing, or completed. A development with genuinely different stages per phase is modeled as separate Projects, one per phase, rather than one Project with mixed status.
 _Avoid_: Stage, Phase (as a status value)
 
+**Featured**:
+Whether a Project appears in the Home page selection. Chosen deliberately by the client, never derived from Status or from when the Project was added.
+_Avoid_: Highlighted, Promoted, Pinned
+
+**Badge**:
+An optional marketing label the client attaches to a Project, chosen from a fixed set ("Newly Launched", "Booking Open"). Independent of Status and of Featured: a Project can be featured without a badge, or badged without being featured. Never derived from a date, because a Project added to the catalog years after completion is not newly launched.
+_Avoid_: Tag, Label, New
+
 **Render**:
 A marketing visualization image of a Project. For a completed Project, the render is the original pre-construction visualization, reused as-is; it is never a photo of the finished building.
 _Avoid_: Photo, Image (generically), Rendering
@@ -37,8 +45,8 @@ A short (around 1.5 minutes) promotional video for a Project, hosted as an unlis
 _Avoid_: Video, Clip, Reel (alone)
 
 **Landmark Distance**:
-The distance from a Project to one of a fixed set of nearby amenity categories (school, petrol pump, hospital, supermarket, airport/station), entered manually. Left blank when a category doesn't apply to a given Project.
-_Avoid_: Nearby places, POI
+The distance from a Project to one nearby place, entered manually as a place name and a figure in kilometres. Four kinds are offered on every Project and each may be left out when it doesn't apply: school, hospital, metro/station, airport. Beyond those, the client may add further entries choosing from a fixed vocabulary of kinds (supermarket, petrol pump, temple, park, college, IT park, bus stand). The kind is always chosen from a list, never typed freely, so every entry has an icon and a label. Figures are the client's own, entered per Project.
+_Avoid_: Nearby places, POI, Amenity
 
 **RERA Number**:
 A Project's regulatory registration number. Shown as "Coming soon" when the Project isn't yet registered.

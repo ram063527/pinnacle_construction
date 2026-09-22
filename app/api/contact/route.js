@@ -1,7 +1,6 @@
-import { contact } from "@/data/contact";
+import { getContact } from "@/sanity/lib/content";
 
 const FROM = process.env.CONTACT_FROM_EMAIL ?? "Pinnacle Construction <onboarding@resend.dev>";
-const TO = process.env.CONTACT_TO_EMAIL ?? contact.email;
 
 function clean(value, max) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
@@ -22,6 +21,9 @@ export async function POST(request) {
   } catch {
     return Response.json({ error: "Could not read that request." }, { status: 400 });
   }
+
+  const TO =
+    process.env.CONTACT_TO_EMAIL ?? (await getContact()).email;
 
   const name = clean(payload.name, 120);
   const phone = clean(payload.phone, 20);

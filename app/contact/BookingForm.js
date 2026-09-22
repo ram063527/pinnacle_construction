@@ -3,17 +3,12 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { projects } from "@/data/projects";
-import { contact } from "@/data/contact";
 import { Icon } from "@/app/components/icons";
 
 const FIELD =
   "w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm text-ink transition-colors focus:border-brand-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-crimson-400/50";
 const FIELD_WITH_ICON =
   "w-full rounded-lg border border-border bg-surface py-2.5 pl-10 pr-4 text-sm text-ink transition-colors focus:border-brand-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-crimson-400/50";
-
-// Visitors can only book a visit to something we are still building.
-const bookable = projects.filter((project) => project.status !== "completed");
 
 function Required() {
   return (
@@ -23,7 +18,10 @@ function Required() {
   );
 }
 
-export default function BookingForm() {
+export default function BookingForm({ projects, contact }) {
+  // Visitors can only book a visit to something we are still building.
+  const bookable = projects.filter((project) => project.status !== "completed");
+
   const searchParams = useSearchParams();
   const preselected = searchParams.get("project") ?? "";
   const [status, setStatus] = useState("idle");

@@ -1,46 +1,83 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, getProjectBySlug } from "@/data/projects";
+import { getProjectBySlug, getProjectSlugs } from "@/sanity/lib/content";
 import { Icon } from "@/app/components/icons";
-import { badgeClass } from "@/app/components/status";
+import { badgeClass, badgeLabel } from "@/app/components/status";
 import Reveal from "@/app/components/Reveal";
 
-export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+export async function generateStaticParams() {
+  const slugs = await getProjectSlugs();
+  return slugs.map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) return {};
+  const title = project.seoTitle
+    ? { absolute: project.seoTitle }
+    : project.name;
+  const description = project.seoDescription || project.description;
+  const canonical = `/projects/${project.slug}`;
+
   return {
-    title: `${project.name} | Pinnacle Construction`,
-    description: project.description,
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "article",
+      url: canonical,
+      title: project.seoTitle || project.name,
+      description,
+      // Renders are whatever shape the brochure gave us. Sanity crops on the fly to
+      // the 1200x630 that link previews expect.
+      ...(project.renders?.[0]
+        ? {
+            images: [
+              {
+                url: `${project.renders[0]}?w=1200&h=630&fit=crop`,
+                width: 1200,
+                height: 630,
+                alt: project.name,
+              },
+            ],
+          }
+        : {}),
+    },
   };
 }
 
 const landmarkLabels = {
   school: "School",
   hospital: "Hospital",
+  metroOrStation: "Metro / Station",
+  airport: "Airport",
   supermarket: "Supermarket",
   petrolPump: "Petrol Pump",
-  metro: "Metro",
-  airportOrStation: "Airport",
+  temple: "Temple",
+  park: "Park",
+  college: "College",
+  itPark: "IT Park",
+  busStand: "Bus Stand",
 };
 
+// Temple and bus stand fall back to a map pin: there is no icon for either yet.
 const landmarkIcons = {
   school: "academicCap",
   hospital: "medicalCross",
+  metroOrStation: "train",
+  airport: "plane",
   supermarket: "shoppingCart",
   petrolPump: "fuel",
-  metro: "train",
-  airportOrStation: "plane",
+  park: "leaf",
+  college: "academicCap",
+  itPark: "buildingOffice",
 };
 
 export default async function ProjectDetailPage({ params }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) notFound();
 
   // A completed building has no brochure, floor plan, or RERA registration left to
@@ -78,6 +115,11 @@ export default async function ProjectDetailPage({ params }) {
             >
               {project.status}
             </span>
+            {badgeLabel(project.badge) && (
+              <span className="rounded-full bg-white/95 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-crimson-600 shadow-sm">
+                {badgeLabel(project.badge)}
+              </span>
+            )}
           </div>
           <h1 className="mt-3 font-heading text-4xl font-extrabold text-white sm:text-5xl">
             {project.name}
@@ -168,7 +210,7 @@ export default async function ProjectDetailPage({ params }) {
                     className="rounded-xl border border-border bg-surface-raised p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
                   >
                     <Icon
-                      name={landmarkIcons[landmark.kind]}
+                      name={landmarkIcons[landmark.kind] ?? "mapPin"}
                       className="h-5 w-5 text-brand-crimson-500"
                     />
                     <dt className="mt-2 text-xs uppercase tracking-wide text-ink-muted">
@@ -177,14 +219,10 @@ export default async function ProjectDetailPage({ params }) {
                     <dd className="mt-1 font-heading text-base font-semibold leading-snug text-ink">
                       {landmark.name}
                     </dd>
-                    <dd className="mt-1 text-sm text-ink-muted">approx. {landmark.km} km</dd>
+                    <dd className="mt-1 text-sm text-ink-muted">{landmark.km} km</dd>
                   </div>
                 ))}
               </dl>
-              <p className="mt-3 text-xs leading-relaxed text-ink-muted">
-                Distances are approximate and measured to the locality rather than to this
-                plot. Travel time varies with the route you take.
-              </p>
             </Reveal>
           )}
 

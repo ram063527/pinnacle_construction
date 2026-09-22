@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { stats, whyChooseUs, features, services, testimonials, loanPartners } from "@/data/siteContent";
-import { projects } from "@/data/projects";
+import { stats, whyChooseUs, features, services, loanPartners } from "@/data/siteContent";
+import { getProjects, getTestimonials } from "@/sanity/lib/content";
 import { Icon } from "@/app/components/icons";
+import { badgeLabel, BADGE_PILL } from "@/app/components/status";
 import Reveal from "@/app/components/Reveal";
 import CountUp from "@/app/components/CountUp";
 import TestimonialsCarousel from "@/app/components/TestimonialsCarousel";
@@ -11,7 +12,12 @@ import HomePageAnimations from "@/app/components/HomePageAnimations";
 // The hero already shows this one full-bleed; the strip beneath it covers the rest.
 const HERO_SLUG = "dravin-enclave";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [projects, testimonials] = await Promise.all([
+    getProjects(),
+    getTestimonials(),
+  ]);
+
   const featuredProjects = projects.filter((project) => project.featured);
   const heroStrip = projects
     .filter((project) => project.status !== "completed" && project.slug !== HERO_SLUG)
@@ -134,6 +140,9 @@ export default function HomePage() {
                     <span className="absolute left-4 top-4 rounded-full bg-cta px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
                       {project.status}
                     </span>
+                    {badgeLabel(project.badge) && (
+                      <span className={BADGE_PILL}>{badgeLabel(project.badge)}</span>
+                    )}
                   </div>
                   <div className="p-6">
                     <h3 className="font-heading text-xl font-bold text-ink">{project.name}</h3>

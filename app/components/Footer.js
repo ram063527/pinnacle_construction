@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { contact } from "@/data/contact";
+import { getContact } from "@/sanity/lib/content";
 import { Icon } from "@/app/components/icons";
 
-export default function Footer() {
+export default async function Footer() {
+  const contact = await getContact();
+
   return (
     <footer className="border-t border-border bg-surface-raised">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">

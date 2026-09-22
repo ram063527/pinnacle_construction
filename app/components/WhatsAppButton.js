@@ -1,6 +1,7 @@
-import { contact } from "@/data/contact";
+import { getContact } from "@/sanity/lib/content";
 
-export default function WhatsAppButton({ projectName }) {
+export default async function WhatsAppButton({ projectName }) {
+  const contact = await getContact();
   const message = projectName
     ? `Hi, I'm interested in ${projectName}`
     : contact.whatsappMessage;

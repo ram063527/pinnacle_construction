@@ -1,17 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import { stats, story, mission, vision } from "@/data/siteContent";
-import { projects } from "@/data/projects";
+import { getProjects, getTeam } from "@/sanity/lib/content";
 import { Icon } from "@/app/components/icons";
 import Reveal from "@/app/components/Reveal";
 import CountUp from "@/app/components/CountUp";
 
 export const metadata = {
-  title: "About Us | Pinnacle Construction",
+  title: "About Us",
+  alternates: { canonical: "/about" },
   description: "Founded in 2010, Pinnacle Construction has delivered 43 projects and 521 happy clients across Nagpur.",
 };
 
-export default function AboutPage() {
+function initials(name) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0].toUpperCase())
+    .join("");
+}
+
+export default async function AboutPage() {
+  const [projects, team] = await Promise.all([getProjects(), getTeam()]);
   const delivered = projects.filter((project) => project.status === "completed");
 
   // The one fact a generic builder page can't borrow: the actual Nagpur localities
@@ -128,6 +139,40 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+
+      {team.length > 0 && (
+        <section className="border-t border-border bg-surface py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Reveal className="max-w-2xl">
+              <h2 className="font-heading text-3xl font-bold text-ink">The people behind it</h2>
+              <p className="mt-3 text-ink-muted">
+                Small team, long tenure. The same people who quote your project are the
+                ones on site while it goes up.
+              </p>
+            </Reveal>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {team.map((member, index) => (
+                <Reveal key={member.name + member.role} delay={(index % 4) * 80}>
+                  <div className="h-full rounded-xl border border-border bg-surface-raised p-6 transition-all hover:-translate-y-0.5 hover:shadow-md">
+                    <span
+                      aria-hidden="true"
+                      className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-crimson-500/10 font-heading text-lg font-bold text-brand-crimson-600"
+                    >
+                      {initials(member.name)}
+                    </span>
+                    <h3 className="mt-4 font-heading text-lg font-bold text-ink">{member.name}</h3>
+                    <p className="mt-1 text-sm font-medium text-brand-blue-500">{member.role}</p>
+                    {member.bio && (
+                      <p className="mt-3 text-sm leading-relaxed text-ink-muted">{member.bio}</p>
+                    )}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Delivered work stands in for the generic "why choose us" grid that used to sit here. */}
       <section className="bg-surface-raised py-16">

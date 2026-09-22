@@ -4,7 +4,14 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/app/components/icons";
-import { areaOf, badgeClass, byActionability, STATUS_ORDER } from "@/app/components/status";
+import {
+  areaOf,
+  badgeClass,
+  badgeLabel,
+  BADGE_PILL,
+  byActionability,
+  STATUS_ORDER,
+} from "@/app/components/status";
 
 const STATUS_TABS = [
   { value: "all", label: "All" },
@@ -152,6 +159,9 @@ export default function ProjectsBrowser({ projects }) {
                 >
                   {project.status}
                 </span>
+                {badgeLabel(project.badge) && (
+                  <span className={BADGE_PILL}>{badgeLabel(project.badge)}</span>
+                )}
               </div>
               <div className="p-6">
                 <h3 className="font-heading text-lg font-bold text-ink">{project.name}</h3>

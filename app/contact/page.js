@@ -1,16 +1,20 @@
 import { Suspense } from "react";
-import { contact, faqs } from "@/data/contact";
+import { faqs } from "@/data/siteContent";
+import { getContact, getProjects } from "@/sanity/lib/content";
 import BookingForm from "./BookingForm";
 import Faq from "./Faq";
 import { Icon } from "@/app/components/icons";
 import Reveal from "@/app/components/Reveal";
 
 export const metadata = {
-  title: "Contact Us | Pinnacle Construction",
+  title: "Contact Us",
+  alternates: { canonical: "/contact" },
   description: "Get in touch with Pinnacle Construction or book a site visit to one of our Nagpur projects.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const [contact, projects] = await Promise.all([getContact(), getProjects()]);
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <Reveal className="max-w-2xl">
@@ -84,7 +88,7 @@ export default function ContactPage() {
 
         <Reveal delay={120}>
           <Suspense fallback={null}>
-            <BookingForm />
+            <BookingForm projects={projects} contact={contact} />
           </Suspense>
         </Reveal>
       </div>
