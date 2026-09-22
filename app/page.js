@@ -265,7 +265,7 @@ export default async function HomePage() {
                 alt={partner.name}
                 width={120}
                 height={48}
-                className="h-9 w-auto object-contain opacity-80 grayscale transition-all hover:opacity-100 hover:grayscale-0 dark:brightness-110"
+                className="h-9 w-auto object-contain transition-transform hover:scale-105"
               />
             ))}
           </Reveal>
